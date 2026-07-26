@@ -1,18 +1,11 @@
 {
   "products": [
     {
-      "title": "Обувь",
-      "gender": "девочка",
-      "type": "низ",
-      "price": 1200,
-      "image": "/images/uploads/photo_5402072864501994990_y.jpg"
-    },
-    {
-      "title": "крутилка",
-      "gender": "мужское",
-      "type": "обувь",
-      "price": 122221,
-      "image": "/images/uploads/загруженное-4-.jpg"
+      "title": "футболка",
+      "gender": "женское",
+      "type": "верх",
+      "price": 10000,
+      "image": "/images/uploads/он-мужчина-эталон.jpg"
     }
   ]
 }
