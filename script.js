@@ -73,12 +73,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        const products = await response.json();
+        const data = await response.json();
+const products = data.products || [];
 
-        const filtered = products.filter(item => 
-            item.gender.toLowerCase() === targetGender && 
-            item.type.toLowerCase() === targetType
-        );
+const filtered = products.filter(item => 
+    item.gender && item.gender.toLowerCase() === targetGender && 
+    item.type && item.type.toLowerCase() === targetType
+);
 
         if (filtered.length === 0) {
             gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
