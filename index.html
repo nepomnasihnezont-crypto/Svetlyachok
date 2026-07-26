@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин «Светлячок»</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Светлячок</a>
+            
+            <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav" id="navMenu">
+                <div class="dropdown">
+                    <button class="dropdown-toggle">Мужское</button>
+                    <div class="dropdown-menu">
+                        <a href="catalog.html?gender=мужское&type=верх&title=Мужское — Верх">Верх</a>
+                        <a href="catalog.html?gender=мужское&type=низ&title=Мужское — Низ">Низ</a>
+                        <a href="catalog.html?gender=мужское&type=обувь&title=Мужское — Обувь">Обувь</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-toggle">Женское</button>
+                    <div class="dropdown-menu">
+                        <a href="catalog.html?gender=женское&type=верх&title=Женское — Верх">Верх</a>
+                        <a href="catalog.html?gender=женское&type=низ&title=Женское — Низ">Низ</a>
+                        <a href="catalog.html?gender=женское&type=обувь&title=Женское — Обувь">Обувь</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-toggle">Девочка</button>
+                    <div class="dropdown-menu">
+                        <a href="catalog.html?gender=девочка&type=верх&title=Девочка — Верх">Верх</a>
+                        <a href="catalog.html?gender=девочка&type=низ&title=Девочка — Низ">Низ</a>
+                        <a href="catalog.html?gender=девочка&type=обувь&title=Девочка — Обувь">Обувь</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-toggle">Мальчик</button>
+                    <div class="dropdown-menu">
+                        <a href="catalog.html?gender=мальчик&type=верх&title=Мальчик — Верх">Верх</a>
+                        <a href="catalog.html?gender=мальчик&type=низ&title=Мальчик — Низ">Низ</a>
+                        <a href="catalog.html?gender=мальчик&type=обувь&title=Мальчик — Обувь">Обувь</a>
+                    </div>
+                </div>
+
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero-welcome">
+            <div class="container">
+                <h2>Светлячок</h2>
+                <p class="about-text">Магазин современной и удобной одежды для всей семьи.</p>
+                <div class="social-link-box">
+                    <a href="https://max.ru/join/hbU644XuPRjI790T-eX1KNmPfKuoRqVbMJqG8pOZTXk" target="_blank" class="btn group-btn">Наша группа в Макс</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts" class="contacts-section">
+            <div class="container">
+                <h3>Контакты и адрес</h3>
+                <p><strong>Адрес:</strong> Укажи здесь город, улица, дом</p>
+                <p><strong>Режим работы:</strong> Пн-Вс: 10:00 – 19:00</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Светлячок.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
