@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "products"
+    label: "Товары"
+    folder: "content/products"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - { label: "Название товара", name: "title", widget: "string" }
+      - { 
+          label: "Пол / Возраст", 
+          name: "gender", 
+          widget: "select", 
+          options: ["мужское", "женское", "девочка", "мальчик"] 
+        }
+      - { 
+          label: "Категория", 
+          name: "type", 
+          widget: "select", 
+          options: ["верх", "низ", "обувь"] 
+        }
+      - { label: "Цена (только цифры)", name: "price", widget: "number" }
+      - { label: "Фотография товара", name: "image", widget: "image" }
