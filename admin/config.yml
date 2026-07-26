@@ -1,6 +1,5 @@
 backend:
   name: github
-  repo: nepomnasihnezont-crypto/Svetlyachok
   branch: main
 
 media_folder: "uploads"
