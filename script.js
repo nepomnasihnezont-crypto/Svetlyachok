@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-
     const starsCount = 45; 
     for (let i = 0; i < starsCount; i++) {
         const star = document.createElement('div');
@@ -44,17 +43,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (gallery) {
         const urlParams = new URLSearchParams(window.location.search);
-        let targetGender = urlParams.get('gender');
         let targetType = urlParams.get('type');
         let pageTitle = urlParams.get('title');
 
-        if (!targetGender || !targetType) {
-         
+        if (!targetType) {
             if (catalogTitle) catalogTitle.textContent = 'Выберите категорию';
             if (categoryGrid) categoryGrid.style.display = 'grid';
             gallery.style.display = 'none';
         } else {
-
             if (categoryGrid) categoryGrid.style.display = 'none';
             gallery.style.display = 'grid';
 
@@ -62,7 +58,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 catalogTitle.textContent = decodeURIComponent(pageTitle);
             }
 
-            targetGender = decodeURIComponent(targetGender).toLowerCase();
             targetType = decodeURIComponent(targetType).toLowerCase();
 
             try {
@@ -76,7 +71,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const products = data.products || [];
 
                 const filtered = products.filter(item => 
-                    item.gender && item.gender.toLowerCase() === targetGender && 
                     item.type && item.type.toLowerCase() === targetType
                 );
 
