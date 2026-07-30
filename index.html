@@ -12,11 +12,12 @@
     <header class="header">
         <div class="container header-container">
             <a href="index.html" class="logo">Светлячок</a>
-            
+
             <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
                 <span></span>
                 <span></span>
                 <span></span>
+                <span class="burger-text">Меню</span>
             </button>
 
             <nav class="nav" id="navMenu">
@@ -57,6 +58,7 @@
                 </div>
 
                 <a href="#contacts">Контакты</a>
+                <a href="cart.html" class="desktop-cart-link">🛒 Корзина <span id="cartCountDesktop" class="cart-badge">0</span></a>
             </nav>
         </div>
     </header>
@@ -80,6 +82,26 @@
             </div>
         </section>
     </main>
+    
+    <nav class="mobile-bottom-bar">
+        <a href="index.html" class="mobile-bar-item">
+            <span>🏠</span>
+            <span>Главная</span>
+        </a>
+        <a href="catalog.html?gender=женское&type=верх&title=Каталог" class="mobile-bar-item">
+            <span>👕</span>
+            <span>Каталог</span>
+        </a>
+        <a href="cart.html" class="mobile-bar-item cart-bar-item">
+            <span>🛒</span>
+            <span>Корзина</span>
+            <span id="cartCountMobile" class="cart-badge-mobile">0</span>
+        </a>
+        <a href="#contacts" class="mobile-bar-item">
+            <span>📍</span>
+            <span>Контакты</span>
+        </a>
+    </nav>
 
     <footer class="footer">
         <div class="container">
