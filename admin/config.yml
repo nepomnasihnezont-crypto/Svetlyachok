@@ -18,7 +18,23 @@ collections:
             widget: "list"
             fields:
               - { label: "Название товара", name: "title", widget: "string" }
-              - { label: "Пол / Возраст", name: "gender", widget: "select", options: ["женское", "мужское", "девочка", "мальчик"] }
-              - { label: "Категория", name: "type", widget: "select", options: ["верх", "низ", "обувь"] }
+              - { 
+                  label: "Пол / Аудитория", 
+                  name: "gender", 
+                  widget: "select", 
+                  options: ["женское", "мужское", "девочка", "мальчик", "унисекс"] 
+                }
+              - { 
+                  label: "Категория", 
+                  name: "type", 
+                  widget: "select", 
+                  options: ["верх", "низ", "обувь", "аксессуары", "мелочи"] 
+                }
+              - { 
+                  label: "Статус товара", 
+                  name: "status", 
+                  widget: "select", 
+                  options: ["обычный", "новинка", "распродажа"] 
+                }
               - { label: "Цена (только цифры)", name: "price", widget: "number" }
               - { label: "Фотография товара", name: "image", widget: "image" }
