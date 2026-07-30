@@ -12,18 +12,7 @@
         <div class="container header-container">
             <a href="index.html" class="logo">Светлячок</a>
             
-            <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span class="burger-text">Меню</span>
-            </button>
-
-            <nav class="nav" id="navMenu">
-                <a href="index.html">Главная</a>
-                <a href="index.html#contacts">Контакты</a>
-                <a href="cart.html" class="desktop-cart-link">🛒 Корзина <span id="cartCountDesktop" class="cart-badge">0</span></a>
-            </nav>
+            <a href="cart.html" class="desktop-cart-link">🛒 Корзина <span id="cartCountDesktop" class="cart-badge">0</span></a>
         </div>
     </header>
 
@@ -31,9 +20,7 @@
         <section class="cart-section">
             <div class="container">
                 <h2 class="catalog-title">Ваша корзина</h2>
-                <div id="cartItemsContainer">
-
-                </div>
+                <div id="cartItemsContainer"></div>
                 <div id="cartSummary" class="cart-summary" style="display: none;">
                     <p class="cart-total-text">Итого: <span id="cartTotalPrice">0</span> ₽</p>
                     <button id="checkoutBtn" class="group-btn">Оформить заказ</button>
