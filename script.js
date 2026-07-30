@@ -39,25 +39,47 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const gallery = document.getElementById('gallery');
     const catalogTitle = document.getElementById('catalogTitle');
-    const categoryGrid = document.getElementById('categoryGrid');
+    const personGrid = document.getElementById('personGrid');
+    const typeGrid = document.getElementById('typeGrid');
 
     if (gallery) {
         const urlParams = new URLSearchParams(window.location.search);
+        let targetPerson = urlParams.get('person');
         let targetType = urlParams.get('type');
         let pageTitle = urlParams.get('title');
 
-        if (!targetType) {
+        if (!targetPerson && !targetType) {
             if (catalogTitle) catalogTitle.textContent = 'Выберите категорию';
-            if (categoryGrid) categoryGrid.style.display = 'grid';
+            if (personGrid) personGrid.style.display = 'grid';
+            if (typeGrid) typeGrid.style.display = 'none';
+            gallery.style.display = 'none';
+        } else if (targetPerson && !targetType) {
+            if (catalogTitle) catalogTitle.textContent = decodeURIComponent(pageTitle || 'Выберите тип одежды');
+            if (personGrid) personGrid.style.display = 'none';
+            if (typeGrid) {
+                typeGrid.style.display = 'grid';
+                const p = encodeURIComponent(targetPerson);
+                const tName = encodeURIComponent(pageTitle);
+                document.getElementById('linkTshirt').href = `catalog.html?person=${p}&type=футболки&title=${tName}: Футболки`;
+                document.getElementById('linkPants').href = `catalog.html?person=${p}&type=штаны&title=${tName}: Штаны`;
+                document.getElementById('linkShorts').href = `catalog.html?person=${p}&type=шорты&title=${tName}: Шорты`;
+                document.getElementById('linkDress').href = `catalog.html?person=${p}&type=платья&title=${tName}: Платья`;
+                document.getElementById('linkShirt').href = `catalog.html?person=${p}&type=рубашки&title=${tName}: Рубашки`;
+                document.getElementById('linkOuterwear').href = `catalog.html?person=${p}&type=верхняя одежда&title=${tName}: Верхняя одежда`;
+                document.getElementById('linkShoes').href = `catalog.html?person=${p}&type=обувь&title=${tName}: Обувь`;
+                document.getElementById('linkAccessories').href = `catalog.html?person=${p}&type=аксессуары&title=${tName}: Аксессуары`;
+            }
             gallery.style.display = 'none';
         } else {
-            if (categoryGrid) categoryGrid.style.display = 'none';
+            if (personGrid) personGrid.style.display = 'none';
+            if (typeGrid) typeGrid.style.display = 'none';
             gallery.style.display = 'grid';
 
             if (pageTitle && catalogTitle) {
                 catalogTitle.textContent = decodeURIComponent(pageTitle);
             }
 
+            targetPerson = decodeURIComponent(targetPerson).toLowerCase();
             targetType = decodeURIComponent(targetType).toLowerCase();
 
             try {
@@ -71,6 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const products = data.products || [];
 
                 const filtered = products.filter(item => 
+                    item.gender && item.gender.toLowerCase() === targetPerson &&
                     item.type && item.type.toLowerCase() === targetType
                 );
 
