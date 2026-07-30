@@ -2,39 +2,28 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "content/images"
+public_folder: "/content/images"
 
 collections:
-  - name: "products_file"
+  - name: "products"
     label: "Товары"
-    files:
-      - name: "all_products"
-        label: "Список всех товаров"
-        file: "content/products/index.json"
-        fields:
-          - label: "Товары"
-            name: "products"
-            widget: "list"
-            fields:
-              - { label: "Название товара", name: "title", widget: "string" }
-              - { 
-                  label: "Пол / Аудитория", 
-                  name: "gender", 
-                  widget: "select", 
-                  options: ["женское", "мужское", "девочка", "мальчик", "унисекс"] 
-                }
-              - { 
-                  label: "Категория", 
-                  name: "type", 
-                  widget: "select", 
-                  options: ["верх", "низ", "обувь", "аксессуары", "мелочи"] 
-                }
-              - { 
-                  label: "Статус товара", 
-                  name: "status", 
-                  widget: "select", 
-                  options: ["обычный", "новинка", "распродажа"] 
-                }
-              - { label: "Цена (только цифры)", name: "price", widget: "number" }
-              - { label: "Фотография товара", name: "image", widget: "image" }
+    folder: "content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Название товара", name: "title", widget: "string"}
+      - label: "Пол / аудитория"
+        name: "gender"
+        widget: "select"
+        options: ["женское", "мужское", "девочки", "мальчики"]
+      - label: "Категория"
+        name: "type"
+        widget: "select"
+        options: ["футболки", "штаны", "шорты", "платья", "рубашки", "верхняя одежда", "обувь", "аксессуары"]
+      - label: "Статус товара"
+        name: "status"
+        widget: "select"
+        options: ["в наличии", "под заказ", "нет в наличии"]
+      - {label: "Цена (только цифры)", name: "price", widget: "number", value_type: "int"}
+      - {label: "Фотография товара", name: "image", widget: "image"}
