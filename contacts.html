@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Магазин «Светлячок»</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Светлячок</a>
+            <nav class="desktop-nav">
+                <a href="index.html" class="desktop-nav-link">Главная</a>
+                <a href="catalog.html" class="desktop-nav-link">Каталог</a>
+                <a href="cart.html" class="desktop-nav-link">Корзина <span id="cartCountDesktop" class="cart-badge">0</span></a>
+                <a href="contacts.html" class="desktop-nav-link">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="contacts-page-section">
+            <div class="container" style="text-align: center; padding: 40px 0;">
+                <h2 class="catalog-title">Контакты и адрес</h2>
+                <div class="contacts-card" style="background: rgba(34, 30, 58, 0.85); border: 2px solid rgba(255, 158, 128, 0.4); border-radius: 14px; padding: 30px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                    <p style="margin-bottom: 15px; font-size: 16px;"><strong>Адрес:</strong> Укажи здесь город, улица, дом</p>
+                    <p style="margin-bottom: 15px; font-size: 16px;"><strong>Режим работы:</strong> Пн-Вс: 10:00 – 19:00</p>
+                    <p style="margin-bottom: 15px; font-size: 16px;"><strong>Юлия Юрьевна:</strong> <a href="tel:+79000000000" style="color: #ff9e80; text-decoration: none; font-weight: bold;">+7 (900) 000-00-00</a></p>
+                    <div style="margin-top: 25px;">
+                        <a href="https://max.ru/join/hbU644XuPRjI790T-eX1KNmPfKuoRqVbMJqG8pOZTXk" target="_blank" class="btn group-btn">Канал в Макс</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="mobile-bottom-bar">
+        <a href="index.html" class="mobile-bar-item">
+            <img src="content/images/home.png" alt="Главная" class="nav-icon">
+            <span>Главная</span>
+        </a>
+        <a href="catalog.html" class="mobile-bar-item">
+            <img src="content/images/catalog.png" alt="Каталог" class="nav-icon">
+            <span>Каталог</span>
+        </a>
+        <a href="cart.html" class="mobile-bar-item cart-bar-item">
+            <img src="content/images/cart.png" alt="Корзина" class="nav-icon">
+            <span>Корзина</span>
+            <span id="cartCountMobile" class="cart-badge-mobile">0</span>
+        </a>
+        <a href="contacts.html" class="mobile-bar-item">
+            <img src="content/images/pin.png" alt="Контакты" class="nav-icon">
+            <span>Контакты</span>
+        </a>
+    </nav>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Светлячок.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
