@@ -16,34 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.appendChild(star);
     }
 
-    const burgerBtn = document.getElementById('burgerBtn');
-    const navMenu = document.getElementById('navMenu');
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    if (burgerBtn && navMenu) {
-        burgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            burgerBtn.classList.toggle('active');
-        });
-    }
-
-    dropdowns.forEach(dropdown => {
-        const toggleBtn = dropdown.querySelector('.dropdown-toggle');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdowns.forEach(item => {
-                    if (item !== dropdown) item.classList.remove('open');
-                });
-                dropdown.classList.toggle('open');
-            });
-        }
-    });
-
-    document.addEventListener('click', () => {
-        dropdowns.forEach(item => item.classList.remove('open'));
-    });
-
     function getCart() {
         return JSON.parse(localStorage.getItem('svetlyachok_cart')) || [];
     }
@@ -68,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const gallery = document.getElementById('gallery');
     const catalogTitle = document.getElementById('catalogTitle');
+    const categoryGrid = document.getElementById('categoryGrid');
 
     if (gallery) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -75,81 +48,87 @@ document.addEventListener('DOMContentLoaded', async () => {
         let targetType = urlParams.get('type');
         let pageTitle = urlParams.get('title');
 
-        if (pageTitle && catalogTitle) {
-            catalogTitle.textContent = decodeURIComponent(pageTitle);
-        }
-
         if (!targetGender || !targetType) {
-            gallery.innerHTML = '<p style="text-align:center; width: 100%;">Выберите раздел в меню выше.</p>';
-            return;
-        }
+         
+            if (catalogTitle) catalogTitle.textContent = 'Выберите категорию';
+            if (categoryGrid) categoryGrid.style.display = 'grid';
+            gallery.style.display = 'none';
+        } else {
 
-        targetGender = decodeURIComponent(targetGender).toLowerCase();
-        targetType = decodeURIComponent(targetType).toLowerCase();
+            if (categoryGrid) categoryGrid.style.display = 'none';
+            gallery.style.display = 'grid';
 
-        try {
-            const response = await fetch('/content/products/index.json');
-            if (!response.ok) {
-                gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
-                return;
+            if (pageTitle && catalogTitle) {
+                catalogTitle.textContent = decodeURIComponent(pageTitle);
             }
 
-            const data = await response.json();
-            const products = data.products || [];
+            targetGender = decodeURIComponent(targetGender).toLowerCase();
+            targetType = decodeURIComponent(targetType).toLowerCase();
 
-            const filtered = products.filter(item => 
-                item.gender && item.gender.toLowerCase() === targetGender && 
-                item.type && item.type.toLowerCase() === targetType
-            );
+            try {
+                const response = await fetch('/content/products/index.json');
+                if (!response.ok) {
+                    gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
+                    return;
+                }
 
-            if (filtered.length === 0) {
-                gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
-                return;
-            }
+                const data = await response.json();
+                const products = data.products || [];
 
-            gallery.innerHTML = '';
-            filtered.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.classList.add('gallery-card');
-                card.innerHTML = `
-                    <img src="${item.image}" alt="${item.title}" loading="lazy">
-                    <div class="gallery-card-info">
-                        <div>
-                            <p style="font-weight: 700; margin-bottom: 5px;">${item.title}</p>
-                            <span style="color: #ff9e80; font-size: 18px; font-weight: bold;">${item.price} ₽</span>
+                const filtered = products.filter(item => 
+                    item.gender && item.gender.toLowerCase() === targetGender && 
+                    item.type && item.type.toLowerCase() === targetType
+                );
+
+                if (filtered.length === 0) {
+                    gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
+                    return;
+                }
+
+                gallery.innerHTML = '';
+                filtered.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('gallery-card');
+                    card.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="gallery-card-info">
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 5px;">${item.title}</p>
+                                <span style="color: #ff9e80; font-size: 18px; font-weight: bold;">${item.price} ₽</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="${index}" data-title="${item.title}" data-price="${item.price}" data-image="${item.image}">В корзину</button>
                         </div>
-                        <button class="add-to-cart-btn" data-id="${index}" data-title="${item.title}" data-price="${item.price}" data-image="${item.image}">В корзину</button>
-                    </div>
-                `;
-                gallery.appendChild(card);
-            });
-
-            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const product = {
-                        title: e.target.dataset.title,
-                        price: Number(e.target.dataset.price),
-                        image: e.target.dataset.image,
-                        quantity: 1
-                    };
-
-                    let cart = getCart();
-                    const existing = cart.find(i => i.title === product.title);
-                    if (existing) {
-                        existing.quantity += 1;
-                    } else {
-                        cart.push(product);
-                    }
-                    saveCart(cart);
-
-                    btn.textContent = 'Добавлено! ✓';
-                    setTimeout(() => { btn.textContent = 'В корзину'; }, 1500);
+                    `;
+                    gallery.appendChild(card);
                 });
-            });
 
-        } catch (e) {
-            console.error(e);
-            gallery.innerHTML = '<p style="text-align:center; width: 100%;">Ошибка загрузки каталога.</p>';
+                document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const product = {
+                            title: e.target.dataset.title,
+                            price: Number(e.target.dataset.price),
+                            image: e.target.dataset.image,
+                            quantity: 1
+                        };
+
+                        let cart = getCart();
+                        const existing = cart.find(i => i.title === product.title);
+                        if (existing) {
+                            existing.quantity += 1;
+                        } else {
+                            cart.push(product);
+                        }
+                        saveCart(cart);
+
+                        btn.textContent = 'Добавлено! ✓';
+                        setTimeout(() => { btn.textContent = 'В корзину'; }, 1500);
+                    });
+                });
+
+            } catch (e) {
+                console.error(e);
+                gallery.innerHTML = '<p style="text-align:center; width: 100%;">Ошибка загрузки каталога.</p>';
+            }
         }
     }
 
@@ -204,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const checkoutBtn = document.getElementById('checkoutBtn');
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', () => {
-                alert('Заказ успешно сформирован! В реальном проекте здесь будет отправка данных в Telegram или на почту.');
+                alert('Заказ успешно сформирован!');
                 localStorage.removeItem('svetlyachok_cart');
                 renderCart();
                 updateCartCounters();
