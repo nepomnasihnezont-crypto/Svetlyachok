@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог — Магазин «Светлячок»</title>
+    <title>Корзина — Магазин «Светлячок»</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header class="header">
         <div class="container header-container">
             <a href="index.html" class="logo">Светлячок</a>
-            <a href="cart.html" class="desktop-cart-link">🛒 Корзина <span id="cartCountDesktop" class="cart-badge">0</span></a>
+            <nav class="desktop-nav">
+                <a href="index.html" class="desktop-nav-link">Главная</a>
+                <a href="catalog.html" class="desktop-nav-link">Каталог</a>
+                <a href="cart.html" class="desktop-nav-link">Корзина <span id="cartCountDesktop" class="cart-badge">0</span></a>
+                <a href="index.html#contacts" class="desktop-nav-link">Контакты</a>
+            </nav>
         </div>
     </header>
-    <main class="main">
-        <section class="catalog-section">
-            <div class="container">
-                <h2 id="catalogTitle" class="catalog-title">Каталог</h2>
 
-                <div id="categoryGrid" class="category-grid" style="display: none;">
-                    <a href="catalog.html?type=футболки&title=Футболки" class="category-tile">👕 Футболки</a>
-                    <a href="catalog.html?type=штаны&title=Штаны" class="category-tile">👖 Штаны</a>
-                    <a href="catalog.html?type=шорты&title=Шорты" class="category-tile">🩳 Шорты</a>
-                    <a href="catalog.html?type=платья&title=Платья" class="category-tile">👗 Платья</a>
-                    <a href="catalog.html?type=рубашки&title=Рубашки" class="category-tile">👔 Рубашки</a>
-                    <a href="catalog.html?type=верхняя одежда&title=Верхняя одежда" class="category-tile">🧥 Верхняя одежда</a>
-                    <a href="catalog.html?type=обувь&title=Обувь" class="category-tile">👟 Обувь</a>
-                    <a href="catalog.html?type=аксессуары&title=Аксессуары" class="category-tile">🧢 Аксессуары</a>
+    <main class="main">
+        <section class="cart-section">
+            <div class="container">
+                <h2 class="catalog-title">Ваша корзина</h2>
+                <div id="cartItemsContainer"></div>
+                <div id="cartSummary" class="cart-summary" style="display: none;">
+                    <p class="cart-total-text">Итого: <span id="cartTotalPrice">0</span> ₽</p>
+                    <button id="checkoutBtn" class="group-btn">Оформить заказ</button>
                 </div>
-                <div id="gallery" class="gallery-grid"></div>
             </div>
         </section>
     </main>
