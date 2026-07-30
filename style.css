@@ -15,7 +15,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 70px; /* Отступ снизу под мобильную панель */
+    padding-bottom: 70px;
 }
 
 .star {
@@ -36,14 +36,14 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .header {
     background: rgba(34, 30, 58, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 2px solid #ff9e80;
-    padding: 20px 0;
+    padding: 15px 0;
     position: relative;
     z-index: 100;
     box-shadow: 0 6px 25px rgba(255, 123, 114, 0.25);
@@ -56,17 +56,18 @@ body {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: #ff9e80;
     text-decoration: none;
     text-shadow: 0 2px 8px rgba(255, 158, 128, 0.4);
 }
 
+/* Десктопное меню */
 .nav {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -75,21 +76,21 @@ body {
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s;
+    font-size: 15px;
 }
 
 .nav > a:hover, .desktop-cart-link:hover {
     color: #ff9e80;
 }
 
-/* Бейджики счетчика товаров в корзине */
 .cart-badge, .cart-badge-mobile {
     background: #ff7b72;
     color: #fff;
-    font-size: 12px;
-    padding: 2px 6px;
+    font-size: 11px;
+    padding: 2px 5px;
     border-radius: 10px;
     font-weight: bold;
-    margin-left: 4px;
+    margin-left: 3px;
 }
 
 .dropdown {
@@ -100,7 +101,7 @@ body {
     background: none;
     border: none;
     color: #e2d1f0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     font-family: inherit;
@@ -122,7 +123,7 @@ body {
     min-width: 160px;
     flex-direction: column;
     padding: 10px 0;
-    margin-top: 15px;
+    margin-top: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 101;
 }
@@ -144,58 +145,14 @@ body {
     display: flex;
 }
 
-/* Кнопка бургер с подписью */
-.burger-btn {
-    display: none;
-    background: #ff7b72;
-    border: 2px solid #ffe6a7;
-    border-radius: 10px;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 45px;
-    gap: 4px;
-    position: relative;
-}
-
-.burger-btn span:not(.burger-text) {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: #1a1b2f;
-    border-radius: 2px;
-    transition: 0.3s;
-}
-
-.burger-text {
-    font-size: 9px;
-    font-weight: bold;
-    color: #1a1b2f;
-    text-transform: uppercase;
-    line-height: 1;
-}
-
-.burger-btn.active span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-}
-.burger-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-.burger-btn.active span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-}
-
-/* Главная страница */
 .hero-welcome {
-    padding: 70px 0;
+    padding: 50px 0;
     text-align: center;
 }
 
 .hero-welcome h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
+    font-size: 34px;
+    margin-bottom: 15px;
     color: #fff;
     text-shadow: 0 2px 12px rgba(255, 123, 114, 0.4);
 }
@@ -203,8 +160,8 @@ body {
 .about-text {
     color: #d1bfe0;
     max-width: 600px;
-    margin: 0 auto 30px;
-    font-size: 18px;
+    margin: 0 auto 25px;
+    font-size: 16px;
 }
 
 .group-btn {
@@ -212,7 +169,7 @@ body {
     border: 2px solid #ff9e80;
     background: rgba(255, 123, 114, 0.15);
     backdrop-filter: blur(6px);
-    padding: 12px 32px;
+    padding: 12px 28px;
     border-radius: 25px;
     color: #ff9e80;
     font-weight: 700;
@@ -225,97 +182,107 @@ body {
 .group-btn:hover {
     background: #ff9e80;
     color: #1a1b2f;
-    transform: translateY(-2px);
 }
 
-/* Каталог и сетка товаров */
 .catalog-section, .cart-section {
-    padding: 40px 0;
+    padding: 30px 0;
 }
 
 .catalog-title {
-    font-size: 32px;
+    font-size: 26px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #fff;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* По умолчанию 2 колонки для телефонов, как на WB */
+    gap: 10px;
 }
 
 .gallery-card {
-    background: rgba(34, 30, 58, 0.7);
-    border: 2px solid rgba(255, 158, 128, 0.3);
-    border-radius: 16px;
+    background: rgba(34, 30, 58, 0.85);
+    border: 1px solid rgba(255, 158, 128, 0.3);
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: transform 0.2s, border-color 0.2s;
 }
 
-.gallery-card:hover {
-    border-color: #ff9e80;
-    transform: translateY(-4px);
-}
-
 .gallery-card img {
     width: 100%;
-    height: 220px;
+    height: 170px;
     object-fit: cover;
 }
 
 .gallery-card-info {
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     justify-content: space-between;
 }
 
+.gallery-card-info p {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.gallery-card-info span {
+    font-size: 15px;
+    color: #ff9e80;
+    font-weight: bold;
+}
+
 .add-to-cart-btn {
-    margin-top: 12px;
+    margin-top: 8px;
     background: #ff9e80;
     color: #1a1b2f;
     border: none;
-    padding: 8px 12px;
+    padding: 8px;
     border-radius: 8px;
     font-weight: bold;
+    font-size: 12px;
     cursor: pointer;
     transition: background 0.2s;
+    width: 100%;
 }
 
 .add-to-cart-btn:hover {
     background: #ffb8a5;
 }
 
-/* Корзина */
 .cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: rgba(34, 30, 58, 0.7);
     border: 1px solid rgba(255, 158, 128, 0.3);
-    padding: 15px;
+    padding: 12px;
     border-radius: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .cart-summary {
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: right;
     background: rgba(34, 30, 58, 0.9);
-    padding: 20px;
+    padding: 15px;
     border-radius: 12px;
     border: 2px solid #ff9e80;
 }
 
 .cart-total-text {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .remove-item-btn {
@@ -324,41 +291,41 @@ body {
     color: #ff7b72;
     cursor: pointer;
     font-weight: bold;
+    font-size: 12px;
 }
 
 /* Контакты */
 .contacts-section {
-    padding: 40px 0;
+    padding: 30px 0;
     text-align: center;
     border-top: 1px solid rgba(255, 158, 128, 0.2);
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .contacts-section h3 {
-    margin-bottom: 15px;
-    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: 22px;
     color: #fff;
 }
 
 .contacts-section p {
     color: #d1bfe0;
-    margin-bottom: 8px;
+    font-size: 14px;
+    margin-bottom: 6px;
 }
 
-/* Подвал */
 .footer {
     background-color: #191b33;
     border-top: 1px solid rgba(255, 158, 128, 0.2);
-    padding: 25px 0;
+    padding: 20px 0;
     text-align: center;
     color: #9988b0;
-    font-size: 14px;
+    font-size: 13px;
     margin-top: auto;
 }
 
-/* Нижняя мобильная панель (скрыта на ПК) */
 .mobile-bottom-bar {
-    display: none;
+    display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -397,74 +364,25 @@ body {
     right: 8px;
 }
 
-/* Адаптив для телефонов */
-@media (max-width: 768px) {
-    .burger-btn {
-        display: flex;
-    }
-
-    .desktop-cart-link {
-        display: none; /* Убираем дубль корзины из десктопного меню на мобилках */
-    }
-
+@media (min-width: 768px) {
     .mobile-bottom-bar {
-        display: flex;
+        display: none; /* Убираем нижнюю панель на ПК */
     }
 
-    .nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #271f42;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 25px 20px;
-        gap: 12px;
-        border-bottom: 3px solid #ff9e80;
-        display: none;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-        border-radius: 0 0 16px 16px;
+    body {
+        padding-bottom: 0; /* Убираем отступ снизу */
     }
 
-    .nav.active {
-        display: flex;
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* На ПК возвращаем сетку из крупных карточек */
+        gap: 20px;
     }
 
-    .nav > a,
-    .dropdown-toggle {
-        display: block;
-        width: 100%;
-        padding: 14px 18px;
-        background: #302652;
-        border: 2px solid #ff9e80;
-        border-radius: 10px;
-        color: #f2e6ff;
-        font-size: 18px;
-        font-weight: 700;
-        text-align: left;
-        text-decoration: none;
+    .gallery-card img {
+        height: 220px;
     }
 
-    .dropdown {
-        width: 100%;
-    }
-
-    .dropdown-menu {
-        position: static;
-        border: 2px solid #ff9e80;
-        background: #201a38;
-        border-radius: 10px;
-        margin-top: 8px;
-        padding: 5px 0;
-        width: 100%;
-        box-shadow: none;
-    }
-
-    .dropdown-menu a {
-        padding: 12px 20px;
-        color: #f2e6ff;
-        font-size: 16px;
-        font-weight: 600;
+    .gallery-card-info p {
+        font-size: 15px;
     }
 }
