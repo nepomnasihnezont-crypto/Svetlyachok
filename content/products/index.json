@@ -3,9 +3,10 @@
     {
       "title": "футболка",
       "gender": "женское",
-      "type": "верх",
+      "type": "аксессуары",
       "price": 10000,
-      "image": "/images/uploads/он-мужчина-эталон.jpg"
+      "image": "/images/uploads/он-мужчина-эталон.jpg",
+      "status": "новинка"
     }
   ]
 }
