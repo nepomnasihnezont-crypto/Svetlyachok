@@ -88,6 +88,8 @@ body {
     border-radius: 10px;
     font-weight: bold;
     margin-left: 3px;
+    position: relative;
+    top: -2px;
 }
 
 .hero-welcome {
@@ -327,9 +329,10 @@ body {
 
 .cart-bar-item .cart-badge-mobile {
     position: absolute;
-    top: -4px;
+    top: -2px; 
     right: 8px;
 }
+
 @media (min-width: 768px) {
     .mobile-bottom-bar {
         display: none;
