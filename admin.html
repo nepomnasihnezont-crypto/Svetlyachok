@@ -64,26 +64,26 @@
 
         async function uploadProduct() {
             const status = document.getElementById('status');
+            const fileInput = document.getElementById('image-file');
+
+            if (fileInput.files.length === 0) {
+                alert("Выберите картинку!");
+                return;
+            }
+
             status.innerText = "Публикация на сайт...";
 
             const title = document.getElementById('title').value;
             const price = Number(document.getElementById('price').value);
             const gender = document.getElementById('gender').value;
             const type = document.getElementById('type').value;
-            const fileInput = document.getElementById('image-file');
-
-            if (fileInput.files.length === 0) {
-                alert("Выберите картинку!");
-                status.innerText = "";
-                return;
-            }
 
             const file = fileInput.files[0];
             const reader = new FileReader();
 
             reader.onload = async function(event) {
                 const base64Content = event.target.result.split(',')[1];
-                const imageName = file.name;
+                const imageName = file.name; // Четко берем имя реального выбранного файла
                 const imagePath = `images/uploads/${imageName}`;
                 
                 const GITHUB_TOKEN = "ghp_busGZUMyOR8LCo4uwVUXC5PSO5Uwh4bgQrb"; 
@@ -122,7 +122,7 @@
                         }
                     }
 
-                    // 3. Добавляем новый товар в список
+                    // 3. Добавляем новый товар в список с правильной картинкой
                     decodedData.products.push({
                         title: title,
                         price: price,
