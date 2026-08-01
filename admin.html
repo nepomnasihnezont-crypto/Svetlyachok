@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление товара — Светлячок</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1528; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #2a223f; padding: 30px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        h2 { text-align: center; color: #ffb6c1; margin-bottom: 20px; }
+        label { display: block; margin-top: 15px; font-size: 14px; color: #ddd; }
+        input, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 6px; border: 1px solid #443b63; background: #1a1528; color: #fff; box-sizing: border-box; }
+        button { width: 100%; margin-top: 20px; padding: 12px; background: #ff758c; border: none; border-radius: 6px; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
+        button:hover { background: #ff526d; }
+        #auth-screen, #admin-panel { display: none; }
+        #auth-screen.active, #admin-panel.active { display: block; }
+        .success { color: #4ade80; text-align: center; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Экран ввода пароля -->
+    <div id="auth-screen" class="card active">
+        <h2>Вход для админа</h2>
+        <label>Введите пароль:</label>
+        <input type="password" id="password-input" placeholder="Пароль...">
+        <button onclick="checkPassword()">Войти</button>
+    </div>
+
+    <!-- Панель добавления товара -->
+    <div id="admin-panel" class="card">
+        <h2>Добавить товар</h2>
+        <label>Название товара:</label>
+        <input type="text" id="title" value="Футболка «Светлячок»">
+
+        <label>Цена (руб):</label>
+        <input type="number" id="price" value="1500">
+
+        <label>Пол:</label>
+        <input type="text" id="gender" value="женское">
+
+        <label>Тип:</label>
+        <input type="text" id="type" value="футболки">
+
+        <label>Картинка (файл):</label>
+        <input type="file" id="image-file">
+
+        <button onclick="uploadProduct()">Опубликовать товар</button>
+        <div id="status" class="success"></div>
+    </div>
+
+    <script>
+
+        const CORRECT_PASSWORD = "светеревик"; 
+
+        function checkPassword() {
+            const pass = document.getElementById('password-input').value;
+            if (pass === CORRECT_PASSWORD) {
+                document.getElementById('auth-screen').classList.remove('active');
+                document.getElementById('admin-panel').classList.add('active');
+            } else {
+                alert("Неверный пароль!");
+            }
+        }
+
+        async function uploadProduct() {
+            const status = document.getElementById('status');
+            status.innerText = "Публикация...";
+
+            const title = document.getElementById('title').value;
+            const price = Number(document.getElementById('price').value);
+            const gender = document.getElementById('gender').value;
+            const type = document.getElementById('type').value;
+            const fileInput = document.getElementById('image-file');
+
+            if (fileInput.files.length === 0) {
+                alert("Выберите картинку!");
+                status.innerText = "";
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = async function(event) {
+                const base64Content = event.target.result.split(',')[1];
+                const imageName = file.name;
+
+                status.innerText = "Готово! (сейчас подключим авто-отправку)";
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
