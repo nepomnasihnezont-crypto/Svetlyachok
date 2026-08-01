@@ -1,7 +1,8 @@
 backend:
   name: github
-  repo: nepomnasihnezont-crypto/Светлячок  # Проверь, чтобы название твоего репозитория было точным
+  repo: nepomnasihnezont-crypto/Svetlyachok
   branch: main
+  base_url: https://api.github.com
 
 media_folder: "images/uploads"
 public_folder: "images/uploads"
