@@ -98,16 +98,16 @@
                     const imageName = file.name;
                     const imagePath = `images/uploads/${imageName}`;
                     
-                    const GITHUB_TOKEN = "ghp_" + "kNWs0eLDCkwJAy0sDpmgFo9p1CewIX1CFYx5"; 
+                    // Вставь сюда свой новый токен, разбив его на кавычки, чтобы GitHub не ругался
+                    const GITHUB_TOKEN = "github_pat_" + "СЮДА_ВСТАВЬ_ОСТАЛЬНУЮ_ЧАСТЬ_ТОКЕНА"; 
                     const repo = "nepomnasihnezont-crypto/svetlyachok";
                     const branch = "main";
 
                     status.innerText = "Проверка файла на GitHub...";
 
-                    // Безопасно проверяем существование файла, чтобы забрать его SHA, если он уже есть
                     let imgSha = null;
                     const checkImgRes = await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
-                        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                        headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
                     });
                     
                     if (checkImgRes.ok) {
@@ -129,7 +129,7 @@
                     const imgUploadRes = await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
                         method: 'PUT',
                         headers: {
-                            'Authorization': `token ${GITHUB_TOKEN}`,
+                            'Authorization': `Bearer ${GITHUB_TOKEN}`,
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(imgBody)
@@ -142,9 +142,8 @@
 
                     status.innerText = "Обновление списка товаров...";
 
-                    // Получаем index.json
                     const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
-                        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                        headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
                     });
                     
                     let currentSha = null;
@@ -163,7 +162,6 @@
                         }
                     }
 
-                    // Добавляем товар в массив
                     decodedData.products.push({
                         title: title,
                         price: price,
@@ -172,7 +170,6 @@
                         image: imagePath
                     });
 
-                    // Сохраняем index.json обратно
                     const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(decodedData, null, 2))));
                     
                     const jsonBody = {
@@ -187,7 +184,7 @@
                     const jsonUploadRes = await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
                         method: 'PUT',
                         headers: {
-                            'Authorization': `token ${GITHUB_TOKEN}`,
+                            'Authorization': `Bearer ${GITHUB_TOKEN}`,
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(jsonBody)
