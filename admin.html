@@ -14,7 +14,9 @@
         button:hover { background: #ff526d; }
         #auth-screen, #admin-panel { display: none; }
         #auth-screen.active, #admin-panel.active { display: block; }
-        .success { color: #4ade80; text-align: center; margin-top: 10px; }
+        .status-msg { text-align: center; margin-top: 10px; font-size: 14px; }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
     </style>
 </head>
 <body>
@@ -34,19 +36,27 @@
         <input type="text" id="title" value="Футболка «Светлячок»">
 
         <label>Цена (руб):</label>
-        <input type="number" id="price" value="1500">
+        <input type="number" id="price" value="2000">
 
         <label>Пол:</label>
-        <input type="text" id="gender" value="женское">
+        <select id="gender">
+            <option value="женское">Женское</option>
+            <option value="мужское">Мужское</option>
+            <option value="унисекс">Унисекс</option>
+        </select>
 
         <label>Тип:</label>
-        <input type="text" id="type" value="футболки">
+        <select id="type">
+            <option value="футболки">Футболки</option>
+            <option value="худи">Худи</option>
+            <option value="аксессуары">Аксессуары</option>
+        </select>
 
         <label>Картинка (файл):</label>
         <input type="file" id="image-file">
 
         <button onclick="uploadProduct()">Опубликовать товар</button>
-        <div id="status" class="success"></div>
+        <div id="status" class="status-msg"></div>
     </div>
 
     <script>
@@ -64,14 +74,15 @@
 
         async function uploadProduct() {
             const status = document.getElementById('status');
-            const fileInput = document.getElementById('image-file');
+            status.className = "status-msg";
+            status.innerText = "Проверка файла...";
 
+            const fileInput = document.getElementById('image-file');
             if (fileInput.files.length === 0) {
                 alert("Выберите картинку!");
+                status.innerText = "";
                 return;
             }
-
-            status.innerText = "Публикация на сайт...";
 
             const title = document.getElementById('title').value;
             const price = Number(document.getElementById('price').value);
@@ -82,47 +93,68 @@
             const reader = new FileReader();
 
             reader.onload = async function(event) {
-                const base64Content = event.target.result.split(',')[1];
-                const imageName = file.name; // Четко берем имя реального выбранного файла
-                const imagePath = `images/uploads/${imageName}`;
-                
-                const GITHUB_TOKEN = "ghp_busGZUMyOR8LCo4uwVUXC5PSO5Uwh4bgQrb"; 
-                const repo = "nepomnasihnezont-crypto/svetlyachok";
-                const branch = "main";
-
                 try {
-                    // 1. Загружаем картинку в репозиторий
-                    await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
+                    const base64Content = event.target.result.split(',')[1];
+                    const imageName = file.name;
+                    const imagePath = `images/uploads/${imageName}`;
+                    
+                    const GITHUB_TOKEN = "ghp_busGZUMyOR8LCo4uwVUXC5PSO5Uwh4bgQrb"; 
+                    const repo = "nepomnasihnezont-crypto/svetlyachok";
+                    const branch = "main";
+
+                    status.innerText = "Загрузка картинки на GitHub...";
+
+                    let imgSha = null;
+                    const checkImgRes = await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
+                        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                    });
+                    if (checkImgRes.ok) {
+                        const imgData = await checkImgRes.json();
+                        imgSha = imgData.sha;
+                    }
+
+                    const imgBody = {
+                        message: `Add image ${imageName}`,
+                        content: base64Content,
+                        branch: branch
+                    };
+                    if (imgSha) imgBody.sha = imgSha;
+
+                    const imgUploadRes = await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
                         method: 'PUT',
                         headers: {
                             'Authorization': `token ${GITHUB_TOKEN}`,
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({
-                            message: `Add image ${imageName}`,
-                            content: base64Content,
-                            branch: branch
-                        })
+                        body: JSON.stringify(imgBody)
                     });
 
-                    // 2. Получаем текущий файл index.json
+                    if (!imgUploadRes.ok) {
+                        throw new Error("Не удалось загрузить картинку на GitHub");
+                    }
+
+                    status.innerText = "Обновление списка товаров...";
+
                     const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
                         headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
                     });
-                    const getData = await getRes.json();
-                    const currentSha = getData.sha;
                     
+                    let currentSha = null;
                     let decodedData = { products: [] };
-                    if (getData.content) {
-                        try {
-                            decodedData = JSON.parse(decodeURIComponent(escape(atob(getData.content))));
-                            if (!decodedData.products) decodedData.products = [];
-                        } catch (e) {
-                            decodedData = { products: [] };
+
+                    if (getRes.ok) {
+                        const getData = await getRes.json();
+                        currentSha = getData.sha;
+                        if (getData.content) {
+                            try {
+                                decodedData = JSON.parse(decodeURIComponent(escape(atob(getData.content))));
+                                if (!decodedData.products) decodedData.products = [];
+                            } catch (e) {
+                                decodedData = { products: [] };
+                            }
                         }
                     }
 
-                    // 3. Добавляем новый товар в список с правильной картинкой
                     decodedData.products.push({
                         title: title,
                         price: price,
@@ -131,27 +163,34 @@
                         image: imagePath
                     });
 
-                    // 4. Отправляем обновленный index.json назад на GitHub
                     const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(decodedData, null, 2))));
                     
-                    await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
+                    const jsonBody = {
+                        message: `Add product ${title}`,
+                        content: updatedContent,
+                        branch: branch
+                    };
+                    if (currentSha) jsonBody.sha = currentSha;
+
+                    const jsonUploadRes = await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
                         method: 'PUT',
                         headers: {
                             'Authorization': `token ${GITHUB_TOKEN}`,
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({
-                            message: `Add product ${title}`,
-                            content: updatedContent,
-                            sha: currentSha,
-                            branch: branch
-                        })
+                        body: JSON.stringify(jsonBody)
                     });
 
+                    if (!jsonUploadRes.ok) {
+                        throw new Error("Не удалось сохранить index.json");
+                    }
+
+                    status.className = "status-msg success";
                     status.innerText = "Успешно! Товар добавлен на сайт.";
                 } catch (err) {
                     console.error(err);
-                    status.innerText = "Ошибка при публикации!";
+                    status.className = "status-msg error";
+                    status.innerText = "Ошибка: " + err.message;
                 }
             };
 
