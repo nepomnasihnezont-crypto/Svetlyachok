@@ -91,6 +91,7 @@
                 const branch = "main";
 
                 try {
+                    // 1. Загружаем картинку в репозиторий
                     await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
                         method: 'PUT',
                         headers: {
@@ -104,14 +105,24 @@
                         })
                     });
 
+                    // 2. Получаем текущий файл index.json
                     const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
                         headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
                     });
                     const getData = await getRes.json();
                     const currentSha = getData.sha;
                     
-                    let decodedData = JSON.parse(decodeURIComponent(escape(atob(getData.content))));
+                    let decodedData = { products: [] };
+                    if (getData.content) {
+                        try {
+                            decodedData = JSON.parse(decodeURIComponent(escape(atob(getData.content))));
+                            if (!decodedData.products) decodedData.products = [];
+                        } catch (e) {
+                            decodedData = { products: [] };
+                        }
+                    }
 
+                    // 3. Добавляем новый товар в список
                     decodedData.products.push({
                         title: title,
                         price: price,
@@ -120,6 +131,7 @@
                         image: imagePath
                     });
 
+                    // 4. Отправляем обновленный index.json назад на GitHub
                     const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(decodedData, null, 2))));
                     
                     await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
