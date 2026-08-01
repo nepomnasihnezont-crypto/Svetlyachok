@@ -17,11 +17,11 @@
 </head>
 <body>
 
-    <h2>Добавление товара</h2>
+    <h2>Добавление товара для мамы</h2>
     
     <div class="form-group">
         <label>Название товара:</label>
-        <input type="text" id="title" placeholder="Например: Платье">
+        <input type="text" id="title" placeholder="Например: Платье летнее">
     </div>
 
     <div class="form-group">
@@ -30,54 +30,72 @@
     </div>
 
     <div class="form-group">
-        <label>Фотография:</label>
-        <input type="file" id="imageFile" accept="image/*">
+        <label>Пол (категория):</label>
+        <select id="gender">
+            <option value="женское">Женское</option>
+            <option value="мужское">Мужское</option>
+            <option value="девочки">Девочки</option>
+            <option value="мальчики">Мальчики</option>
+            <option value="новинки">Новинки</option>
+            <option value="распродажа">Распродажа</option>
+        </select>
     </div>
 
-    <button onclick="saveProduct()">Добавить на витрину</button>
+    <div class="form-group">
+        <label>Тип одежды:</label>
+        <select id="type">
+            <option value="футболки">Футболки</option>
+            <option value="штаны">Штаны</option>
+            <option value="шорты">Шорты</option>
+            <option value="платья">Платья</option>
+            <option value="рубашки">Рубашки</option>
+            <option value="верхняя одежда">Верхняя одежда</option>
+            <option value="обувь">Обувь</option>
+            <option value="аксессуары">Аксессуары</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Ссылка на картинку (или имя файла):</label>
+        <input type="text" id="image" placeholder="images/uploads/dress.jpg">
+    </div>
+
+    <button onclick="downloadJson()">Скачать обновленный файл товаров</button>
     <div id="status" class="success"></div>
 
     <script>
-        function saveProduct() {
+        function downloadJson() {
             const title = document.getElementById('title').value;
-            const price = document.getElementById('price').value;
-            const fileInput = document.getElementById('imageFile');
-            const status = document.getElementById('status');
+            const price = Number(document.getElementById('price').value);
+            const gender = document.getElementById('gender').value;
+            const type = document.getElementById('type').value;
+            const image = document.getElementById('image').value;
 
-            if (!title || !price || fileInput.files.length === 0) {
-                alert('Заполни все поля и выбери фото!');
+            if (!title || !price || !image) {
+                alert('Заполни все поля!');
                 return;
             }
 
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+            // Создаем структуру, которую ждет твой catalog.html
+            const newProduct = { title, price, gender, type, image };
 
-            reader.onload = function(e) {
-                const base64Image = e.target.result;
-
-                const newProduct = {
-                    id: Date.now(),
-                    title: title,
-                    price: price,
-                    image: base64Image
-                };
-
-                // Берем старые товары, если они есть, и добавляем новый
-                let products = JSON.parse(localStorage.getItem('svetlyachok_products') || '[]');
-                products.unshift(newProduct);
-                localStorage.setItem('svetlyachok_products', JSON.stringify(products));
-
-                status.innerText = 'Готово! Товар добавлен на сайт.';
-                
-                // Очищаем форму
-                document.getElementById('title').value = '';
-                document.getElementById('price').value = '';
-                fileInput.value = '';
-
-                setTimeout(() => { status.innerText = ''; }, 3000);
+            // Здесь можно вставить старые товары, если нужно, или собрать итоговый файл
+            const dataToSave = {
+                products: [
+                    newProduct
+                    // Сюда можно добавить остальные товары в формате JSON
+                ]
             };
 
-            reader.readAsDataURL(file);
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataToSave, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "index.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+
+            document.getElementById('status').innerText = 'Файл index.json скачан! Закинь его на GitHub.';
         }
     </script>
 </body>
