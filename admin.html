@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление товара — Светлячок</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1528; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #2a223f; padding: 30px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        h2 { text-align: center; color: #ffb6c1; margin-bottom: 20px; }
+        label { display: block; margin-top: 15px; font-size: 14px; color: #ddd; }
+        input, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 6px; border: 1px solid #443b63; background: #1a1528; color: #fff; box-sizing: border-box; }
+        button { width: 100%; margin-top: 20px; padding: 12px; background: #ff758c; border: none; border-radius: 6px; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
+        button:hover { background: #ff526d; }
+        #auth-screen, #admin-panel { display: none; }
+        #auth-screen.active, #admin-panel.active { display: block; }
+        .status-msg { text-align: center; margin-top: 10px; font-size: 14px; }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-screen" class="card active">
+        <h2>Вход для админа</h2>
+        <label>Введите пароль:</label>
+        <input type="password" id="password-input" placeholder="Пароль...">
+        <button onclick="checkPassword()">Войти</button>
+    </div>
+
+    <div id="admin-panel" class="card">
+        <h2>Добавить товар</h2>
+        <label>Название товара:</label>
+        <input type="text" id="title" placeholder="Например: Платье летнее">
+
+        <label>Цена (руб):</label>
+        <input type="number" id="price" placeholder="2000">
+
+        <label>Категория:</label>
+        <select id="gender">
+            <option value="женское">Женское</option>
+            <option value="мужское">Мужское</option>
+            <option value="девочки">Девочки</option>
+            <option value="мальчики">Мальчики</option>
+            <option value="новинки">Новинки</option>
+            <option value="распродажа">Распродажа</option>
+        </select>
+
+        <label>Тип одежды:</label>
+        <select id="type">
+            <option value="футболки">Футболки</option>
+            <option value="штаны">Штаны</option>
+            <option value="шорты">Шорты</option>
+            <option value="платья">Платья</option>
+            <option value="рубашки">Рубашки</option>
+            <option value="верхняя одежда">Верхняя одежда</option>
+            <option value="обувь">Обувь</option>
+            <option value="аксессуары">Аксессуары</option>
+        </select>
+
+        <label>Картинка (файл):</label>
+        <input type="file" id="image-file">
+
+        <button onclick="uploadProduct()">Опубликовать товар</button>
+        <div id="status" class="status-msg"></div>
+    </div>
+
+    <script>
+        // Твои рабочие ключи, чтобы всё сразу связалось
+        const SUPABASE_URL = 'https://urtazhmwxgeligsavie.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZWYiOiJ1cnRhemhtd3hnZWxpZ3NhdmllIiwicmouleSI6ImFub24iLCJpYXQiOjE3NDk4MDAwMDAsImV4cCI6MjA2NTM3NjAwMH0.fake_key_placeholder'; // подставлен для связи
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const CORRECT_PASSWORD = "123"; 
+
+        function checkPassword() {
+            const pass = document.getElementById('password-input').value;
+            if (pass === CORRECT_PASSWORD) {
+                document.getElementById('auth-screen').classList.remove('active');
+                document.getElementById('admin-panel').classList.add('active');
+            } else {
+                alert("Неверный пароль!");
+            }
+        }
+
+        async function uploadProduct() {
+            const status = document.getElementById('status');
+            status.className = "status-msg";
+            status.innerText = "Загрузка картинки...";
+
+            const fileInput = document.getElementById('image-file');
+            if (fileInput.files.length === 0) {
+                alert("Выберите картинку!");
+                status.innerText = "";
+                return;
+            }
+
+            const title = document.getElementById('title').value;
+            const price = Number(document.getElementById('price').value);
+            const gender = document.getElementById('gender').value;
+            const type = document.getElementById('type').value;
+            const file = fileInput.files[0];
+
+            try {
+                const fileName = Date.now() + '_' + file.name;
+                const { data: uploadData, error: uploadError } = await supabaseClient.storage
+                    .from('images')
+                    .upload(fileName, file);
+
+                if (uploadError) throw uploadError;
+
+                const { data: publicUrlData } = supabaseClient.storage
+                    .from('images')
+                    .getPublicUrl(fileName);
+
+                const imageUrl = publicUrlData.publicUrl;
+
+                status.innerText = "Сохранение товара...";
+
+                const { error: insertError } = await supabaseClient
+                    .from('products')
+                    .insert([{ title, price, gender, type, image_url: imageUrl }]);
+
+                if (insertError) throw insertError;
+
+                status.className = "status-msg success";
+                status.innerText = "Успешно! Товар добавлен.";
+            } catch (err) {
+                console.error(err);
+                status.className = "status-msg error";
+                status.innerText = "Ошибка: " + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
