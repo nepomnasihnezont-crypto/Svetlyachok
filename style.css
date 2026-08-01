@@ -372,9 +372,13 @@ body {
     }
 
    
-.nav-icon, .tile-img {
-    width: 28px; 
-    height: 28px;
-    object-fit: contain; 
+
+.mobile-bottom-bar .nav-icon {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+}
+
 }
 }
