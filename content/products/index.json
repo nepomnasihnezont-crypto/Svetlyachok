@@ -4,6 +4,15 @@
   "price": 1500,
   "gender": "женское",
   "type": "футболки",
-  "image": "images/uploads/он-мужчина-эталон.jpg"
+  "image": "images/uploads/lol.jpg"
 }
+
+{
+  "title": "Футболка «Светлячок»",
+  "price": 1600,
+  "gender": "женское",
+  "type": "футболки",
+  "image": "images/uploads/wow.jpg"
+}
+
 
