@@ -9,4 +9,12 @@
       "status": "новинка"
     }
   ]
+
+  {
+  "title": "Футболка «Светлячок»",
+  "price": 1500,
+  "gender": "женское",
+  "type": "футболки",
+  "image": "images/uploads/on-muzhchina-etalon.jpg"
+}
 }
