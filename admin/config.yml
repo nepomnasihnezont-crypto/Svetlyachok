@@ -1,9 +1,7 @@
 backend:
   name: github
-  repo: nepomnasihnezont-crypto/Svetlyachok
+  repo: nepomnasihnezont-crypto/svetlyachok
   branch: main
-  base_url: https://api.github.com
-  
 
 media_folder: "images/uploads"
 public_folder: "images/uploads"
