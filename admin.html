@@ -75,7 +75,7 @@
         async function uploadProduct() {
             const status = document.getElementById('status');
             status.className = "status-msg";
-            status.innerText = "Проверка файла...";
+            status.innerText = "Подготовка файла...";
 
             const fileInput = document.getElementById('image-file');
             if (fileInput.files.length === 0) {
@@ -104,6 +104,7 @@
 
                     status.innerText = "Загрузка картинки на GitHub...";
 
+                    // Сразу пробуем отправить картинку (если файл уже есть, GitHub сам вернет его SHA или обновит)
                     let imgSha = null;
                     const checkImgRes = await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
                         headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
@@ -130,11 +131,12 @@
                     });
 
                     if (!imgUploadRes.ok) {
-                        throw new Error("Не удалось загрузить картинку на GitHub");
+                        throw new Error("Ошибка записи картинки (проверьте токен или имя файла)");
                     }
 
                     status.innerText = "Обновление списка товаров...";
 
+                    // Получаем index.json
                     const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
                         headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
                     });
@@ -155,6 +157,7 @@
                         }
                     }
 
+                    // Добавляем новый товар
                     decodedData.products.push({
                         title: title,
                         price: price,
@@ -163,6 +166,7 @@
                         image: imagePath
                     });
 
+                    // Отправляем index.json обратно
                     const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(decodedData, null, 2))));
                     
                     const jsonBody = {
