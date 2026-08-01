@@ -17,7 +17,6 @@
         .success { color: #4ade80; text-align: center; margin-top: 10px; }
     </style>
 </head>
-    
 <body>
 
     <div id="auth-screen" class="card active">
@@ -49,7 +48,6 @@
     </div>
 
     <script>
-
         const CORRECT_PASSWORD = "123"; 
 
         function checkPassword() {
@@ -64,7 +62,7 @@
 
         async function uploadProduct() {
             const status = document.getElementById('status');
-            status.innerText = "Публикация...";
+            status.innerText = "Публикация на сайт...";
 
             const title = document.getElementById('title').value;
             const price = Number(document.getElementById('price').value);
@@ -84,8 +82,64 @@
             reader.onload = async function(event) {
                 const base64Content = event.target.result.split(',')[1];
                 const imageName = file.name;
+                const imagePath = `images/uploads/${imageName}`;
+                
+                // 🔑 СЮДА ВСТАВЬ СВОЙ ТОКЕН С GITHUB МЕЖДУ КАВЫЧКАМИ
+                const GITHUB_TOKEN = " ТВОЙ_ТОКЕН_СЮДА "; 
+                const repo = "nepomnasihnezont-crypto/svetlyachok";
+                const branch = "main";
 
-                status.innerText = "Готово! (сейчас подключим авто-отправку)";
+                try {
+                    await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${GITHUB_TOKEN}`,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: `Add image ${imageName}`,
+                            content: base64Content,
+                            branch: branch
+                        })
+                    });
+
+                    const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
+                        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                    });
+                    const getData = await getRes.json();
+                    const currentSha = getData.sha;
+                    
+                    let decodedData = JSON.parse(decodeURIComponent(escape(atob(getData.content))));
+
+                    decodedData.products.push({
+                        title: title,
+                        price: price,
+                        gender: gender,
+                        type: type,
+                        image: imagePath
+                    });
+
+                    const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(decodedData, null, 2))));
+                    
+                    await fetch(`https://api.github.com/repos/${repo}/contents/content/products/index.json`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${GITHUB_TOKEN}`,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: `Add product ${title}`,
+                            content: updatedContent,
+                            sha: currentSha,
+                            branch: branch
+                        })
+                    });
+
+                    status.innerText = "Успешно! Товар добавлен на сайт.";
+                } catch (err) {
+                    console.error(err);
+                    status.innerText = "Ошибка при публикации!";
+                }
             };
 
             reader.readAsDataURL(file);
