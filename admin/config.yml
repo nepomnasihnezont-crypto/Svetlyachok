@@ -3,6 +3,7 @@ backend:
   repo: nepomnasihnezont-crypto/Svetlyachok
   branch: main
   base_url: https://api.github.com
+  
 
 media_folder: "images/uploads"
 public_folder: "images/uploads"
