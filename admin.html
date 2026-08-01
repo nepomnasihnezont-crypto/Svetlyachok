@@ -19,6 +19,7 @@
 </head>
 <body>
 
+    <!-- Экран ввода пароля -->
     <div id="auth-screen" class="card active">
         <h2>Вход для админа</h2>
         <label>Введите пароль:</label>
@@ -26,6 +27,7 @@
         <button onclick="checkPassword()">Войти</button>
     </div>
 
+    <!-- Панель добавления товара -->
     <div id="admin-panel" class="card">
         <h2>Добавить товар</h2>
         <label>Название товара:</label>
@@ -84,8 +86,7 @@
                 const imageName = file.name;
                 const imagePath = `images/uploads/${imageName}`;
                 
-                // 🔑 СЮДА ВСТАВЬ СВОЙ ТОКЕН С GITHUB МЕЖДУ КАВЫЧКАМИ
-                const GITHUB_TOKEN = " ТВОЙ_ТОКЕН_СЮДА "; 
+                const GITHUB_TOKEN = "ghp_busGZUMyOR8LCo4uwVUXC5PSO5Uwh4bgQrb"; 
                 const repo = "nepomnasihnezont-crypto/svetlyachok";
                 const branch = "main";
 
