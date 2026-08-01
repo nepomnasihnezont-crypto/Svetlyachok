@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить товар — Светлячок</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1528; color: #fff; padding: 20px; max-width: 500px; margin: 0 auto; }
+        h2 { text-align: center; color: #ffb6c1; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #ddd; }
+        input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #443b63; background: #2a223f; color: #fff; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 14px; background: #ff758c; border: none; border-radius: 8px; color: white; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:active { background: #ff526d; }
+        .success { color: #4ade80; text-align: center; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Добавление товара</h2>
+    
+    <div class="form-group">
+        <label>Название товара:</label>
+        <input type="text" id="title" placeholder="Например: Платье">
+    </div>
+
+    <div class="form-group">
+        <label>Цена (руб):</label>
+        <input type="number" id="price" placeholder="1500">
+    </div>
+
+    <div class="form-group">
+        <label>Фотография:</label>
+        <input type="file" id="imageFile" accept="image/*">
+    </div>
+
+    <button onclick="saveProduct()">Добавить на витрину</button>
+    <div id="status" class="success"></div>
+
+    <script>
+        function saveProduct() {
+            const title = document.getElementById('title').value;
+            const price = document.getElementById('price').value;
+            const fileInput = document.getElementById('imageFile');
+            const status = document.getElementById('status');
+
+            if (!title || !price || fileInput.files.length === 0) {
+                alert('Заполни все поля и выбери фото!');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const base64Image = e.target.result;
+
+                const newProduct = {
+                    id: Date.now(),
+                    title: title,
+                    price: price,
+                    image: base64Image
+                };
+
+                // Берем старые товары, если они есть, и добавляем новый
+                let products = JSON.parse(localStorage.getItem('svetlyachok_products') || '[]');
+                products.unshift(newProduct);
+                localStorage.setItem('svetlyachok_products', JSON.stringify(products));
+
+                status.innerText = 'Готово! Товар добавлен на сайт.';
+                
+                // Очищаем форму
+                document.getElementById('title').value = '';
+                document.getElementById('price').value = '';
+                fileInput.value = '';
+
+                setTimeout(() => { status.innerText = ''; }, 3000);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
