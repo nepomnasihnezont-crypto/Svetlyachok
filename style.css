@@ -370,4 +370,11 @@ body {
     .gallery-card-info p {
         font-size: 15px;
     }
+
+   
+.nav-icon, .tile-img {
+    width: 28px; 
+    height: 28px;
+    object-fit: contain; 
+}
 }
