@@ -83,17 +83,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = decodeURIComponent(targetType).toLowerCase();
 
             try {
-                const response = await fetch('/content/products/index.json');
+                const response = await fetch('https://api.github.com/repos/nepomnasihnezont-crypto/Svetlyachok/contents/content/products');
                 if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
                 }
 
-                const data = await response.json();
-                const products = data.products || [];
+                const files = await response.json();
+                const jsonFiles = files.filter(file => file.name.endsWith('.json'));
+
+                if (jsonFiles.length === 0) {
+                    gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
+                    return;
+                }
+
+                const productsPromises = jsonFiles.map(file => fetch(file.download_url).then(res => res.json()));
+                const products = await Promise.all(productsPromises);
 
                 const filtered = products.filter(item => 
-                    item.gender && item.gender.toLowerCase() === targetPerson &&
+                    item && item.gender && item.gender.toLowerCase() === targetPerson &&
                     item.type && item.type.toLowerCase() === targetType
                 );
 
