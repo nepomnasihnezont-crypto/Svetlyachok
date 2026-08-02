@@ -10,6 +10,7 @@ collections:
     label: "Товары"
     folder: "content/products"
     create: true
+    format: "json"
     slug: "{{slug}}"
     fields:
       - {label: "Название товара", name: "title", widget: "string"}
