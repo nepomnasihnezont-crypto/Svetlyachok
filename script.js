@@ -90,14 +90,35 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 const files = await response.json();
-                const jsonFiles = files.filter(file => file.name.endsWith('.json'));
+                const jsonFiles = files.filter(file => file.name.endsWith('.json') || file.name.endsWith('.md'));
 
                 if (jsonFiles.length === 0) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
                 }
 
-                const productsPromises = jsonFiles.map(file => fetch(file.download_url).then(res => res.json()));
+                const productsPromises = jsonFiles.map(async file => {
+                    const res = await fetch(file.download_url);
+                    if (file.name.endsWith('.json')) {
+                        return await res.json();
+                    } else {
+                        const text = await res.text();
+                        const data = {};
+                        text.replace(/---([\s\S]*?)---/, (_, frontmatter) => {
+                            frontmatter.split('\n').forEach(line => {
+                                const parts = line.split(':');
+                                if (parts.length >= 2) {
+                                    const key = parts[0].trim();
+                                    let val = parts.slice(1).join(':').trim();
+                                    if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
+                                    data[key] = val;
+                                }
+                            });
+                        });
+                        return data;
+                    }
+                });
+
                 const products = await Promise.all(productsPromises);
 
                 const filtered = products.filter(item => 
@@ -114,6 +135,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 filtered.forEach((item, index) => {
                     const card = document.createElement('div');
                     card.classList.add('gallery-card');
+                    card.style.cursor = 'pointer';
                     card.innerHTML = `
                         <img src="${item.image}" alt="${item.title}" loading="lazy">
                         <div class="gallery-card-info">
@@ -124,11 +146,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <button class="add-to-cart-btn" data-id="${index}" data-title="${item.title}" data-price="${item.price}" data-image="${item.image}">В корзину</button>
                         </div>
                     `;
+
+                    card.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('add-to-cart-btn')) return; // не открывать модалку при клике на кнопку корзины
+                        openProductModal(item);
+                    });
+
                     gallery.appendChild(card);
                 });
 
                 document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
                         const product = {
                             title: e.target.dataset.title,
                             price: Number(e.target.dataset.price),
@@ -156,6 +185,67 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
     }
+
+    const modal = document.getElementById('productModal');
+    const closeModal = document.getElementById('closeModal');
+
+    function openProduct(item) {
+        openProductModal(item);
+    }
+
+    function openProductModal(item) {
+        if (!modal) return;
+        
+        document.getElementById('modalTitle').textContent = item.title;
+        document.getElementById('modalPrice').textContent = `${item.price} ₽`;
+        document.getElementById('modalDescription').textContent = item.description || 'Описание отсутствует.';
+
+        const modalGallery = document.getElementById('modalGallery');
+        modalGallery.innerHTML = '';
+
+        let allImages = [item.image];
+        if (item.images && Array.isArray(item.images)) {
+            item.images.forEach(imgObj => {
+                if (imgObj && imgObj.img) allImages.push(imgObj.img);
+            });
+        }
+
+        allImages.forEach(imgSrc => {
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.style.cssText = 'width: 120px; height: 120px; object-fit: cover; border-radius: 8px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;';
+            modalGallery.appendChild(img);
+        });
+
+        const modalAddToCart = document.getElementById('modalAddToCart');
+        modalAddToCart.onclick = () => {
+            const product = {
+                title: item.title,
+                price: Number(item.price),
+                image: item.image,
+                quantity: 1
+            };
+            let cart = getCart();
+            const existing = cart.find(i => i.title === product.title);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+            saveCart(cart);
+            modalAddToCart.textContent = 'Добавлено в корзину! ✓';
+            setTimeout(() => { modalAddToCart.textContent = 'В корзину'; }, 1500);
+        };
+
+        modal.style.display = 'flex';
+    }
+
+    if (closeModal) {
+        closeModal.onclick = () => { modal.style.display = 'none'; };
+    }
+    window.onclick = (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+    };
 
     const cartItemsContainer = document.getElementById('cartItemsContainer');
     const cartSummary = document.getElementById('cartSummary');
