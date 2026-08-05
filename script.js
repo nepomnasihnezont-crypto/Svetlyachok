@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 catalogTitle.textContent = decodeURIComponent(pageTitle);
             }
 
-            targetPerson = decodeURIComponent(targetPerson).toLowerCase();
-            targetType = decodeURIComponent(targetType).toLowerCase();
+            targetPerson = targetPerson ? decodeURIComponent(targetPerson).toLowerCase() : '';
+            targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
                 const response = await fetch('./content/products/products.json');
@@ -97,10 +97,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const products = await response.json();
 
-                const filtered = products.filter(item => 
-                    item && item.gender && item.gender.toLowerCase() === targetPerson &&
-                    item.type && item.type.toLowerCase() === targetType
-                );
+                // Безопасная фильтрация с проверкой на наличие строк
+                const filtered = products.filter(item => {
+                    if (!item) return false;
+                    const itemGender = (item.gender && typeof item.gender === 'string') ? item.gender.toLowerCase() : '';
+                    const itemType = (item.type && typeof item.type === 'string') ? item.type.toLowerCase() : '';
+                    return itemGender === targetPerson && itemType === targetType;
+                });
 
                 if (filtered.length === 0) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
@@ -173,41 +176,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('modalDescription').textContent = item.description || 'Описание отсутствует.';
 
         const modalGallery = document.getElementById('modalGallery');
-        modalGallery.innerHTML = '';
+        if (modalGallery) {
+            modalGallery.innerHTML = '';
 
-        let allImages = [item.image];
-        if (item.images && Array.isArray(item.images)) {
-            item.images.forEach(imgObj => {
-                if (imgObj && imgObj.img) allImages.push(imgObj.img);
+            let allImages = [item.image];
+            if (item.images && Array.isArray(item.images)) {
+                item.images.forEach(imgObj => {
+                    if (imgObj && imgObj.img) allImages.push(imgObj.img);
+                });
+            }
+
+            allImages.forEach(imgSrc => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.style.cssText = 'width: 120px; height: 120px; object-fit: cover; border-radius: 8px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;';
+                modalGallery.appendChild(img);
             });
         }
 
-        allImages.forEach(imgSrc => {
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.style.cssText = 'width: 120px; height: 120px; object-fit: cover; border-radius: 8px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;';
-            modalGallery.appendChild(img);
-        });
-
         const modalAddToCart = document.getElementById('modalAddToCart');
-        modalAddToCart.onclick = () => {
-            const product = {
-                title: item.title,
-                price: Number(item.price),
-                image: item.image,
-                quantity: 1
+        if (modalAddToCart) {
+            modalAddToCart.onclick = () => {
+                const product = {
+                    title: item.title,
+                    price: Number(item.price),
+                    image: item.image,
+                    quantity: 1
+                };
+                let cart = getCart();
+                const existing = cart.find(i => i.title === product.title);
+                if (existing) {
+                    existing.quantity += 1;
+                } else {
+                    cart.push(product);
+                }
+                saveCart(cart);
+                modalAddToCart.textContent = 'Добавлено в корзину! ✓';
+                setTimeout(() => { modalAddToCart.textContent = 'В корзину'; }, 1500);
             };
-            let cart = getCart();
-            const existing = cart.find(i => i.title === product.title);
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push(product);
-            }
-            saveCart(cart);
-            modalAddToCart.textContent = 'Добавлено в корзину! ✓';
-            setTimeout(() => { modalAddToCart.textContent = 'В корзину'; }, 1500);
-        };
+        }
 
         modal.style.display = 'flex';
     }
@@ -252,7 +259,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 cartItemsContainer.appendChild(div);
             });
 
-            document.getElementById('cartTotalPrice').textContent = totalPrice;
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+            if (totalPriceEl) totalPriceEl.textContent = totalPrice;
 
             document.querySelectorAll('.remove-item-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -278,13 +286,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
-
-if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-        if (!user) {
-            window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-            });
-        }
-    });
-}
