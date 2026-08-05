@@ -60,14 +60,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                 typeGrid.style.display = 'grid';
                 const p = encodeURIComponent(targetPerson);
                 const tName = encodeURIComponent(pageTitle);
-                document.getElementById('linkTshirt').href = `catalog.html?person=${p}&type=футболки&title=${tName}: Футболки`;
-                document.getElementById('linkPants').href = `catalog.html?person=${p}&type=штаны&title=${tName}: Штаны`;
-                document.getElementById('linkShorts').href = `catalog.html?person=${p}&type=шорты&title=${tName}: Шорты`;
-                document.getElementById('linkDress').href = `catalog.html?person=${p}&type=платья&title=${tName}: Платья`;
-                document.getElementById('linkShirt').href = `catalog.html?person=${p}&type=рубашки&title=${tName}: Рубашки`;
-                document.getElementById('linkOuterwear').href = `catalog.html?person=${p}&type=верхняя одежда&title=${tName}: Верхняя одежда`;
-                document.getElementById('linkShoes').href = `catalog.html?person=${p}&type=обувь&title=${tName}: Обувь`;
-                document.getElementById('linkAccessories').href = `catalog.html?person=${p}&type=аксессуары&title=${tName}: Аксессуары`;
+                const links = {
+                    'linkTshirt': 'футболки',
+                    'linkPants': 'штаны',
+                    'linkShorts': 'шорты',
+                    'linkDress': 'платья',
+                    'linkShirt': 'рубашки',
+                    'linkOuterwear': 'верхняя одежда',
+                    'linkShoes': 'обувь',
+                    'linkAccessories': 'аксессуары'
+                };
+                for (const [id, typeVal] of Object.entries(links)) {
+                    const el = document.getElementById(id);
+                    if (el) el.href = `catalog.html?person=${p}&type=${encodeURIComponent(typeVal)}&title=${tName}: ${typeVal.charAt(0).toUpperCase() + typeVal.slice(1)}`;
+                }
             }
             gallery.style.display = 'none';
         } else {
@@ -83,43 +89,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = decodeURIComponent(targetType).toLowerCase();
 
             try {
-                const response = await fetch('https://api.github.com/repos/nepomnasihnezont-crypto/Svetlyachok/contents/content/products');
+                const response = await fetch('./content/products/products.json');
                 if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
                 }
 
-                const files = await response.json();
-                const jsonFiles = files.filter(file => file.name.endsWith('.json') || file.name.endsWith('.md'));
-
-                if (jsonFiles.length === 0) {
-                    gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
-                    return;
-                }
-
-                const productsPromises = jsonFiles.map(async file => {
-                    const res = await fetch(file.download_url);
-                    if (file.name.endsWith('.json')) {
-                        return await res.json();
-                    } else {
-                        const text = await res.text();
-                        const data = {};
-                        text.replace(/---([\s\S]*?)---/, (_, frontmatter) => {
-                            frontmatter.split('\n').forEach(line => {
-                                const parts = line.split(':');
-                                if (parts.length >= 2) {
-                                    const key = parts[0].trim();
-                                    let val = parts.slice(1).join(':').trim();
-                                    if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
-                                    data[key] = val;
-                                }
-                            });
-                        });
-                        return data;
-                    }
-                });
-
-                const products = await Promise.all(productsPromises);
+                const products = await response.json();
 
                 const filtered = products.filter(item => 
                     item && item.gender && item.gender.toLowerCase() === targetPerson &&
@@ -148,7 +124,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     `;
 
                     card.addEventListener('click', (e) => {
-                        if (e.target.classList.contains('add-to-cart-btn')) return; // не открывать модалку при клике на кнопку корзины
+                        if (e.target.classList.contains('add-to-cart-btn')) return;
                         openProductModal(item);
                     });
 
@@ -188,10 +164,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const modal = document.getElementById('productModal');
     const closeModal = document.getElementById('closeModal');
-
-    function openProduct(item) {
-        openProductModal(item);
-    }
 
     function openProductModal(item) {
         if (!modal) return;
