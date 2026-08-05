@@ -4,7 +4,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000.webp",
     "images": []
   },
@@ -13,7 +13,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000aq.webp",
     "images": []
   },
@@ -22,7 +22,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000b.webp",
     "images": []
   },
@@ -31,7 +31,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000c.webp",
     "images": []
   },
@@ -40,7 +40,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000k.webp",
     "images": []
   },
@@ -49,7 +49,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000m.webp",
     "images": []
   },
@@ -58,7 +58,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000p.webp",
     "images": []
   },
@@ -67,7 +67,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000ren.webp",
     "images": []
   },
@@ -76,7 +76,7 @@
     "price": 1000,
     "gender": ["женское"],
     "type": ["футболки"],
-
+    "description": "Стильная футболка.",
     "image": "images/uploads/1000rubb.webp",
     "images": []
   },
@@ -374,7 +374,7 @@
     "gender": ["женское"],
     "type": ["футболки"],
     "description": "Стильная футболка.",
-    "image": "images/uploads/700f.webp",
+    "image": "uploads/700f.webp",
     "images": []
   },
   {
@@ -504,7 +504,7 @@
     "images": []
   },
   {
-    "title": "Футболка",
+    "title": "Футболקה",
     "price": 750,
     "gender": ["женское"],
     "type": ["футболки"],
@@ -518,7 +518,7 @@
     "gender": ["женское"],
     "type": ["футболки"],
     "description": "Стильная футболка.",
-    "image": "images/uploads/750s.webp",
+    "image": "uploads/750s.webp",
     "images": []
   },
   {
