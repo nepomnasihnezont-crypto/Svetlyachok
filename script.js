@@ -89,7 +89,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
-                const response = await fetch('./content/products/products.json');
+                // Использован абсолютный путь с учетом имени репозитория на GitHub Pages
+                const response = await fetch('/Svetlyachok/content/products/products.json');
                 if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
