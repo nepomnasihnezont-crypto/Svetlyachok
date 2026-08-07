@@ -18,7 +18,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 .star {
     position: fixed;
     background-color: #ffe6a7;
