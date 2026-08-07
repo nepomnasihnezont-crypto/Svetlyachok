@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +17,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 70px;
 }
 
 .star {
@@ -95,20 +96,35 @@ body {
 .hero-welcome {
     padding: 50px 0;
     text-align: center;
+    flex: 1 0 auto;
 }
 
-.hero-welcome h2 {
-    font-size: 34px;
-    margin-bottom: 15px;
-    color: #fff;
-    text-shadow: 0 2px 12px rgba(255, 123, 114, 0.4);
+.rgb-text {
+    background: linear-gradient(90deg, #ff7b72, #ff9e80, #ffe6a7, #ff9e80, #ff7b72);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rgb-animation 8s linear infinite;
+    font-family: 'Allura', cursive;
+    font-size: 60px; /* Немного уменьшил, чтобы он казался легче */
+    font-style: italic; /* Принудительно добавляем наклон */
+    font-weight: 300; /* Делаем шрифт визуально тоньше */
+    letter-spacing: 1px; /* Чуть разрядим буквы для легкости */
 }
 
-.about-text {
-    color: #d1bfe0;
+@keyframes rgb-animation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+.welcome-description {
+    font-size: 18px;
+    color: #e2d1f0;
+    margin-bottom: 30px;
+    font-style: italic;
+    line-height: 1.4;
     max-width: 600px;
-    margin: 0 auto 25px;
-    font-size: 16px;
+    margin: 0 auto 30px;
 }
 
 .group-btn {
@@ -133,6 +149,7 @@ body {
 
 .catalog-section, .cart-section, .contacts-page-section {
     padding: 30px 0;
+    flex: 1 0 auto;
 }
 
 .catalog-title {
@@ -282,6 +299,7 @@ body {
     color: #9988b0;
     font-size: 13px;
     margin-top: auto;
+    flex-shrink: 0;
 }
 
 .mobile-bottom-bar {
@@ -336,10 +354,6 @@ body {
 @media (min-width: 768px) {
     .mobile-bottom-bar {
         display: none;
-    }
-
-    body {
-        padding-bottom: 0;
     }
 
     .desktop-nav {
