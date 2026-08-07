@@ -75,7 +75,7 @@ body {
     width: auto;
     object-fit: contain;
     transition: transform 0.2s;
-    transform: translateX(-25px); 
+    transform: translateX(-30px); 
 }
 .desktop-nav {
     display: none;
