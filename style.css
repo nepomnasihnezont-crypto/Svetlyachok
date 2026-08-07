@@ -104,7 +104,7 @@ body {
 
 .main {
     flex: 1 0 auto;
-    padding-bottom: 70px; /* Защита от перекрытия контента мобильной нижней панелью */
+    padding-bottom: 70px; 
 }
 
 .hero-welcome {
@@ -140,13 +140,12 @@ body {
     margin: 0 auto 30px;
 }
 
-/* Оформление цитаты: Вариант 1 («Неоновая голограмма») */
 .owner-quote {
     background: rgba(34, 30, 58, 0.75);
     border: 1px solid rgba(255, 158, 128, 0.4);
     border-radius: 16px;
     padding: 25px 30px;
-    margin: 0 auto 30px;
+    margin: 25 auto 30px;
     max-width: 600px;
     position: relative;
     text-align: center;
