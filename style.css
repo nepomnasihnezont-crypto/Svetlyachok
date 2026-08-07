@@ -49,6 +49,7 @@ body {
     z-index: 100;
     box-shadow: 0 6px 25px rgba(255, 123, 114, 0.25);
 }
+
 .header-container {
     display: flex;
     justify-content: space-between; 
