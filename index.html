@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин «Светлячок»</title>
+    <title>Светлячок - Магазин одежды и полезных товаров</title>
     <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
     <header class="header">
         <div class="container header-container">
-           <a href="index.html" class="logo">
-    <img src="images/logo.webp" alt="Светлячок">
-</a>
-            <div class="header-phone">
-                 <a href="tel:89528060130" style="color: #ffffff; text-decoration: none; font-size: 14px; white-space: nowrap;">8 (952) 806-01-30</a>
-            </div>
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Светлячок">
+            </a>
+            
             <nav class="desktop-nav">
                 <a href="index.html" class="desktop-nav-link">Главная</a>
                 <a href="catalog.html" class="desktop-nav-link">Каталог</a>
-                <a href="cart.html" class="desktop-nav-link">Корзина <span id="cartCountDesktop" class="cart-badge">0</span></a>
+                <a href="cart.html" class="desktop-nav-link">Корзина <span class="cart-badge">0</span></a>
                 <a href="contacts.html" class="desktop-nav-link">Контакты</a>
             </nav>
+
+            <div class="header-phone">
+                 <a href="tel:89528060130" style="color: #ffffff; text-decoration: none; font-size: 14px;">8 (952) 806-01-30</a>
+            </div>
         </div>
     </header>
 
     <main class="main">
         <section class="hero-welcome">
             <div class="container">
-                <h2 class="rgb-text">Светлячок</h2>
-                <p class="welcome-description">Как мама троих детей, я знаю, что купить нужно всё и сразу. Наш ассортимент вас приятно удивит — ценой, качеством и разнообразием.</p>
+                <h2 class="rgb-text">Светлячок</h2>    
+                <p class="store-subtitle">Магазин одежды и полезных товаров для всей семьи</p>
+                <div class="owner-quote">
+                    <div class="quote-text">
+                        <p>Как мама троих детей, я знаю, что купить нужно всё и сразу. Наш ассортимент вас приятно удивит — ценой, качеством и разнообразием.</p>
+                        <span class="quote-author">— Основательница магазина</span>
+                    </div>
+                </div>
                 <div class="social-link-box" style="margin-bottom: 30px;">
                     <a href="https://max.ru/join/hbU644XuPRjI790T-eX1KNmPfKuoRqVbMJqG8pOZTXk" target="_blank" class="btn group-btn">Наша группа в Макс</a>
                 </div>
@@ -54,32 +60,31 @@
         </section>
     </main>
 
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 «Светлячок». Все права защищены.</p>
+        </div>
+    </footer>
+
     <nav class="mobile-bottom-bar">
         <a href="index.html" class="mobile-bar-item">
-            <img src="images/uploads/home.png" alt="Главная" class="nav-icon">
+            <img src="images/icons/home.png" alt="" class="nav-icon">
             <span>Главная</span>
         </a>
         <a href="catalog.html" class="mobile-bar-item">
-            <img src="images/uploads/catalog.png" alt="Главная" class="nav-icon">
+            <img src="images/icons/catalog.png" alt="" class="nav-icon">
             <span>Каталог</span>
         </a>
         <a href="cart.html" class="mobile-bar-item cart-bar-item">
-            <img src="images/uploads/cart.png" alt="Корзина" class="nav-icon">
+            <img src="images/icons/cart.png" alt="" class="nav-icon">
             <span>Корзина</span>
-            <span id="cartCountMobile" class="cart-badge-mobile">0</span>
+            <span class="cart-badge-mobile">0</span>
         </a>
         <a href="contacts.html" class="mobile-bar-item">
-            <img src="images/uploads/pin.png" alt="Контакты" class="nav-icon">
+            <img src="images/icons/contacts.png" alt="" class="nav-icon">
             <span>Контакты</span>
         </a>
     </nav>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Светлячок.</p>
-            <p style="font-size: 11px; margin-top: 10px;">Разработчик: И. А. Непомнящих | <a href="mailto:irina.nepom@example.com" style="color: #ff9e80;">Связаться по почте</a></p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
