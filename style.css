@@ -393,8 +393,8 @@ body {
 }
 
 .tile-img {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
     margin-right: 8px;
 }
