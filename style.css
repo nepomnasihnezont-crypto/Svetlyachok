@@ -52,18 +52,28 @@ body {
 
 .header-container {
     display: flex;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: center;
-    gap: 20px; 
+    width: 100%;
+    padding: 0 10px;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #ff9e80;
-    text-decoration: none;
-    text-shadow: 0 2px 8px rgba(255, 158, 128, 0.4);
+    display: flex;
+    align-items: center;
+    margin-right: auto; 
+    padding-left: 0;
+}
+
+.logo img {
+    max-height: 40px; 
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.2s;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 .desktop-nav {
@@ -94,10 +104,14 @@ body {
     top: -2px;
 }
 
+.main {
+    flex: 1 0 auto;
+    padding-bottom: 70px; /* Защита от перекрытия контента мобильной нижней панелью */
+}
+
 .hero-welcome {
     padding: 50px 0;
     text-align: center;
-    flex: 1 0 auto;
 }
 
 .rgb-text {
@@ -150,7 +164,6 @@ body {
 
 .catalog-section, .cart-section, .contacts-page-section {
     padding: 30px 0;
-    flex: 1 0 auto;
 }
 
 .catalog-title {
@@ -301,6 +314,7 @@ body {
     font-size: 13px;
     margin-top: auto;
     flex-shrink: 0;
+    z-index: 10;
 }
 
 .mobile-bottom-bar {
@@ -353,6 +367,10 @@ body {
 }
 
 @media (min-width: 768px) {
+    .main {
+        padding-bottom: 0; /* На ПК мобильной панели нет, убираем лишний отступ */
+    }
+
     .mobile-bottom-bar {
         display: none;
     }
