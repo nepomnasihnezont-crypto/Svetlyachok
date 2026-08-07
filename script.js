@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
-                // Использован абсолютный путь с учетом имени репозитория на GitHub Pages
                 const response = await fetch('/Svetlyachok/content/products/products.json');
                 if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const products = await response.json();
 
-                // Безопасная фильтрация с проверкой на наличие строк
                 const filtered = products.filter(item => {
                     if (!item) return false;
                     const itemGender = (item.gender && typeof item.gender === 'string') ? item.gender.toLowerCase() : '';
@@ -275,15 +273,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         renderCart();
-
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', () => {
-                alert('Заказ успешно сформирован!');
-                localStorage.removeItem('svetlyachok_cart');
-                renderCart();
-                updateCartCounters();
-            });
-        }
     }
 });
