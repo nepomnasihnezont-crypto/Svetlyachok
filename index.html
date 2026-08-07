@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Магазин «Светлячок»</title>
     <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
     <header class="header">
         <div class="container header-container">
-            <a href="index.html" class="logo">Светлячок</a>
-            
+           <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Светлячок" style="height: 40px; display: block;">
+</a>
             <div class="header-phone">
                  <a href="tel:89528060130" style="color: #ffffff; text-decoration: none;">8 (952) 806-01-30</a>
             </div>
-
             <nav class="desktop-nav">
                 <a href="index.html" class="desktop-nav-link">Главная</a>
                 <a href="catalog.html" class="desktop-nav-link">Каталог</a>
@@ -29,19 +30,16 @@
     <main class="main">
         <section class="hero-welcome">
             <div class="container">
-                <h2>Светлячок</h2>
-                <p class="about-text">Магазин современной и удобной одежды для всей семьи</p>
+                <h2 class="rgb-text">Светлячок</h2>
+                <p class="welcome-description">Как мама троих детей, я знаю, что купить нужно всё и сразу. Наш ассортимент вас приятно удивит — ценой, качеством и разнообразием.</p>
                 <div class="social-link-box" style="margin-bottom: 30px;">
                     <a href="https://max.ru/join/hbU644XuPRjI790T-eX1KNmPfKuoRqVbMJqG8pOZTXk" target="_blank" class="btn group-btn">Наша группа в Макс</a>
                 </div>
-
-
-<div style="margin-bottom: 40px; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
-    <a href="catalog.html?type=распродажа&title=Распродажа">
-        <img src="images/uploads/sale-banner.png" alt="Распродажа" style="width: 100%; height: auto; display: block;">
-    </a>
-</div>
-
+                <div style="margin-bottom: 40px; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+                    <a href="catalog.html?type=распродажа&title=Распродажа">
+                        <img src="images/uploads/sale-banner.png" alt="Распродажа" style="width: 100%; height: auto; display: block;">
+                    </a>
+                </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; text-align: left;">
                     <a href="catalog.html?type=новинки&title=Новинки" class="category-tile" style="justify-content: space-between; padding: 25px;">
                         <span> Новинки поступления</span>
@@ -79,6 +77,7 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 Светлячок.</p>
+            <p style="font-size: 11px; margin-top: 10px;">Разработчик: И. А. Непомнящих | <a href="mailto:irina.nepom@example.com" style="color: #ff9e80;">Связаться по почте</a></p>
         </div>
     </footer>
 
