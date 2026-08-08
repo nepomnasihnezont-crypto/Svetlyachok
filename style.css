@@ -18,6 +18,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .star {
     position: fixed;
     background-color: #ffe6a7;
@@ -27,7 +28,6 @@ body {
     animation: twinkle 3s infinite ease-in-out;
     box-shadow: 0 0 12px rgba(255, 230, 167, 0.9);
 }
-
 
 @keyframes twinkle {
     0%, 100% { opacity: 0.3; transform: scale(0.8); }
@@ -58,11 +58,13 @@ body {
     padding-left: 0; 
     padding-right: 10px; 
 }
+
 .header-phone {
     margin-left: 0; 
     text-align: right;
     white-space: nowrap; 
 }
+
 .logo {
     display: flex;
     align-items: center;
@@ -77,6 +79,7 @@ body {
     transition: transform 0.2s;
     transform: translateX(-30px); 
 }
+
 .desktop-nav {
     display: none;
 }
@@ -141,48 +144,6 @@ body {
     line-height: 1.4;
     max-width: 600px;
     margin: 0 auto 30px;
-}
-
-.owner-quote {
-    background: rgba(34, 30, 58, 0.75);
-    border: 1px solid rgba(255, 158, 128, 0.4);
-    border-radius: 16px;
-    padding: 25px 30px;
-    margin: 25px auto 30px;
-    max-width: 600px;
-    position: relative;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(255, 123, 114, 0.15), inset 0 0 15px rgba(255, 158, 128, 0.05);
-    backdrop-filter: blur(8px);
-}
-
-.owner-quote::before {
-    content: '“';
-    font-size: 60px;
-    color: #ff9e80;
-    position: absolute;
-    top: -15px;
-    left: 20px;
-    line-height: 1;
-    font-family: serif;
-    opacity: 0.6;
-}
-
-.quote-text p {
-    font-size: 15px;
-    color: #f2e6ff;
-    font-style: italic;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.quote-author {
-    display: block;
-    text-align: right;
-    font-size: 13px;
-    color: #ffb8a5;
-    font-weight: 700;
-    letter-spacing: 1px;
 }
 
 .group-btn {
@@ -411,7 +372,7 @@ body {
 
 @media (min-width: 768px) {
     .main {
-        padding-bottom: 0; /* На ПК мобильной панели нет, убираем лишний отступ */
+        padding-bottom: 0; 
     }
 
     .mobile-bottom-bar {
