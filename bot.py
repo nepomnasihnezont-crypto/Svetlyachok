@@ -132,6 +132,7 @@ async def process_image(message: types.Message, state: FSMContext):
     g = Github(GITHUB_TOKEN)
     repo = g.get_repo(REPO_NAME)
 
+    # 1. Загружаем картинку в репозиторий
     repo.create_file(
         path=image_filename,
         message="Add product image via bot",
@@ -139,9 +140,16 @@ async def process_image(message: types.Message, state: FSMContext):
         branch="main"
     )
 
+    # 2. Получаем актуальный products.json
     contents = repo.get_contents("content/products/products.json", ref="main")
-    products = json.loads(contents.decoded_content.decode("utf-8"))
+    try:
+        products = json.loads(contents.decoded_content.decode("utf-8"))
+        if not isinstance(products, list):
+            products = []
+    except Exception:
+        products = []
 
+    # 3. Формируем новый товар с правильным регистром
     new_product = {
         "title": data["title"],
         "price": data["price"],
@@ -152,6 +160,7 @@ async def process_image(message: types.Message, state: FSMContext):
     }
     products.append(new_product)
 
+    # 4. Обновляем JSON файл в репозитории
     repo.update_file(
         path="content/products/products.json",
         message=f"Add new product: {data['title']}",
