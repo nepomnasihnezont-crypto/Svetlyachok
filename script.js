@@ -259,6 +259,7 @@
                     </div>
                     <button class="remove-item-btn" data-index="${index}">Удалить</button>
                 `;
+                
                 cartItemsContainer.appendChild(div);
             });
 
