@@ -17,6 +17,7 @@ dp = Dispatcher()
 
 class AddProduct(StatesGroup):
     title = State()
+    custom_title = State()
     price = State()
     gender = State()
     type = State()
@@ -25,12 +26,38 @@ class AddProduct(StatesGroup):
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message, state: FSMContext):
-    await message.answer("Привет! Введи название нового товара:")
+    builder = InlineKeyboardBuilder()
+    builder.button(text="👕 Футболка", callback_data="title_Футболка")
+    builder.button(text="👖 Штаны", callback_data="title_Штаны")
+    builder.button(text="🩳 Шорты", callback_data="title_Шорты")
+    builder.button(text="👗 Платье", callback_data="title_Платье")
+    builder.button(text="👔 Рубашка", callback_data="title_Рубашка")
+    builder.button(text="👟 Обувь", callback_data="title_Обувь")
+    builder.button(text="👓 Аксессуар", callback_data="title_Аксессуар")
+    builder.button(text="✍️ Ввести свое...", callback_data="title_custom")
+    builder.adjust(2)
+    
+    await message.answer("Выбери название товара из списка или введи свое:", reply_markup=builder.as_markup())
     await state.set_state(AddProduct.title)
 
-@dp.message(AddProduct.title)
-async def process_title(message: types.Message, state: FSMContext):
+@dp.callback_query(AddProduct.title, F.data.startswith("title_"))
+async def process_title_callback(callback: types.CallbackQuery, state: FSMContext):
+    action = callback.data.split("_")[1]
+    await callback.message.delete()
+    
+    if action == "custom":
+        await callback.message.answer("Введи название товара вручную:")
+        await state.set_state(AddProduct.custom_title)
+    else:
+        await state.update_data(title=action)
+        await ask_price(callback.message, state)
+
+@dp.message(AddProduct.custom_title)
+async def process_custom_title(message: types.Message, state: FSMContext):
     await state.update_data(title=message.text)
+    await ask_price(message, state)
+
+async def ask_price(message: types.Message, state: FSMContext):
     await message.answer("Введи цену товара (только число, например: 1500):")
     await state.set_state(AddProduct.price)
 
@@ -44,7 +71,6 @@ async def process_price(message: types.Message, state: FSMContext):
     
     await state.update_data(price=price)
     
-    # Кнопки для выбора пола/категории
     builder = InlineKeyboardBuilder()
     builder.button(text="Женское", callback_data="gender_женское")
     builder.button(text="Мужское", callback_data="gender_мужское")
@@ -61,7 +87,6 @@ async def process_gender(callback: types.CallbackQuery, state: FSMContext):
     await state.update_data(gender=gender)
     await callback.message.delete()
     
-    # Кнопки для выбора типа товара
     builder = InlineKeyboardBuilder()
     builder.button(text="Футболки", callback_data="type_футболки")
     builder.button(text="Штаны", callback_data="type_штаны")
