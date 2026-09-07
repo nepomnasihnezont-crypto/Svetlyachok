@@ -1,623 +1,631 @@
 [
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000aq.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000b.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000c.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000k.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000m.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000p.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000ren.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000rubb.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000sab.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000z.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1000,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1000pub.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1050,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1050.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1050,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1050d.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1050,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1050ty.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1199,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1199.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1199,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1199io.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1200,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1200.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1200,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1200do.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1200,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1200h.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1200,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1200oi.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1200,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1200w.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1350,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1350.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1450,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1450ld.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1450,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1450m.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1450,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1450sdv.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1490,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1490.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1490,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1490eft.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1500,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1500o.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 1699,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/1699.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 500,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/500ags.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 500,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/500h.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 500,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/500hh.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 500,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/500mf.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 500,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/500ok.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 500,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/500zv.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 650,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/650.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 650,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/650repo.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 699,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/699.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700cvx.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700eh.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700f.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700fg.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700id.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700ii.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700v.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700wer.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700yt.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700z.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 700,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/700zx.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750df.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750dg.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750iu.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750ma.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750nh.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750pd.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750rty.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750s.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750sad.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750si.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750sxd.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750tg.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750uy.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750we.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750wf.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 750,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/750wm.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 800,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/800ns.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 800,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/800s.webp",
-    "images": []
-  },
-  {
-    "title": "Футболка",
-    "price": 999,
-    "gender": "женское",
-    "type": "футболки",
-    "description": "Стильная футболка.",
-    "image": "images/uploads/999.webp",
-    "images": []
-  }
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000aq.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000b.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000c.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000k.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000m.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000p.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000ren.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000rubb.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000sab.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000z.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1000,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1000pub.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1050,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1050.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1050,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1050d.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1050,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1050ty.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1199,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1199.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1199,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1199io.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1200,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1200.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1200,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1200do.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1200,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1200h.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1200,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1200oi.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1200,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1200w.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1350,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1350.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1450,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1450ld.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1450,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1450m.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1450,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1450sdv.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1490,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1490.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1490,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1490eft.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1500,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1500o.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1699,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/1699.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 500,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/500ags.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 500,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/500h.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 500,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/500hh.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 500,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/500mf.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 500,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/500ok.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 500,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/500zv.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 650,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/650.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 650,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/650repo.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 699,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/699.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700cvx.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700eh.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700f.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700fg.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700id.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700ii.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700v.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700wer.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700yt.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700z.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 700,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/700zx.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750df.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750dg.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750iu.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750ma.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750nh.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750pd.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750rty.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750s.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750sad.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750si.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750sxd.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750tg.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750uy.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750we.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750wf.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 750,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/750wm.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 800,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/800ns.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 800,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/800s.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 999,
+        "gender": "женское",
+        "type": "футболки",
+        "description": "Стильная футболка.",
+        "image": "images/uploads/999.webp",
+        "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 1500,
+        "gender": "мужское",
+        "type": "футболки",
+        "description": "rkfccyjt",
+        "image": "images/uploads/AQADpCVrGyOq-Eh8.jpg"
+    }
 ]
