@@ -149,8 +149,8 @@ async def process_image(message: types.Message, state: FSMContext):
     except Exception:
         products = []
 
-    # 3. Формируем новый товар с правильным регистром
-   new_product = {
+    # 3. Формируем новый товар с точным соответствием структуры и полем "images"
+    new_product = {
         "title": data["title"],
         "price": data["price"],
         "gender": data["gender"].strip().lower(),
