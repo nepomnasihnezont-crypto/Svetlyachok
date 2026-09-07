@@ -620,12 +620,5 @@
         "image": "images/uploads/999.webp",
         "images": []
     },
-    {
-        "title": "Футболка",
-        "price": 1500,
-        "gender": "мужское",
-        "type": "футболки",
-        "description": "rkfccyjt",
-        "image": "images/uploads/AQADpCVrGyOq-Eh8.jpg"
-    }
+   
 ]
