@@ -1,10 +1,11 @@
 import os
 import json
 import requests
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.filters import Command
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 from github import Github
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
@@ -24,7 +25,7 @@ class AddProduct(StatesGroup):
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message, state: FSMContext):
-    await message.answer("Привет! Отправь мне название нового товара:")
+    await message.answer("Привет! Введи название нового товара:")
     await state.set_state(AddProduct.title)
 
 @dp.message(AddProduct.title)
@@ -35,31 +36,65 @@ async def process_title(message: types.Message, state: FSMContext):
 
 @dp.message(AddProduct.price)
 async def process_price(message: types.Message, state: FSMContext):
-    await state.update_data(price=int(message.text))
-    await message.answer("Введи категорию (женское, мужское, девочки, мальчики):")
+    try:
+        price = int(message.text)
+    except ValueError:
+        await message.answer("Пожалуйста, введи цену цифрами (например: 1500):")
+        return
+    
+    await state.update_data(price=price)
+    
+    # Кнопки для выбора пола/категории
+    builder = InlineKeyboardBuilder()
+    builder.button(text="Женское", callback_data="gender_женское")
+    builder.button(text="Мужское", callback_data="gender_мужское")
+    builder.button(text="Девочки", callback_data="gender_девочки")
+    builder.button(text="Мальчики", callback_data="gender_мальчики")
+    builder.adjust(2)
+    
+    await message.answer("Выбери категорию:", reply_markup=builder.as_markup())
     await state.set_state(AddProduct.gender)
 
-@dp.message(AddProduct.gender)
-async def process_gender(message: types.Message, state: FSMContext):
-    await state.update_data(gender=message.text.lower())
-    await message.answer("Введи тип товара (футболки, штаны, шорты, платья, рубашки, обувь, аксессуары):")
+@dp.callback_query(AddProduct.gender, F.data.startswith("gender_"))
+async def process_gender(callback: types.CallbackQuery, state: FSMContext):
+    gender = callback.data.split("_")[1]
+    await state.update_data(gender=gender)
+    await callback.message.delete()
+    
+    # Кнопки для выбора типа товара
+    builder = InlineKeyboardBuilder()
+    builder.button(text="Футболки", callback_data="type_футболки")
+    builder.button(text="Штаны", callback_data="type_штаны")
+    builder.button(text="Шорты", callback_data="type_шорты")
+    builder.button(text="Платья", callback_data="type_платья")
+    builder.button(text="Рубашки", callback_data="type_рубашки")
+    builder.button(text="Обувь", callback_data="type_обувь")
+    builder.button(text="Аксессуары", callback_data="type_аксессуары")
+    builder.adjust(2)
+    
+    await callback.message.answer("Выбери тип товара:", reply_markup=builder.as_markup())
     await state.set_state(AddProduct.type)
 
-@dp.message(AddProduct.type)
-async def process_type(message: types.Message, state: FSMContext):
-    await state.update_data(type=message.text.lower())
-    await message.answer("Напиши описание товара:")
+@dp.callback_query(AddProduct.type, F.data.startswith("type_"))
+async def process_type(callback: types.CallbackQuery, state: FSMContext):
+    prod_type = callback.data.split("_")[1]
+    await state.update_data(type=prod_type)
+    await callback.message.delete()
+    
+    await callback.message.answer("Напиши описание товара:")
     await state.set_state(AddProduct.description)
 
 @dp.message(AddProduct.description)
 async def process_description(message: types.Message, state: FSMContext):
     await state.update_data(description=message.text)
-    await message.answer("Отправь фото товара:")
+    await message.answer("Отправь фотографию товара:")
     await state.set_state(AddProduct.image)
 
-@dp.message(AddProduct.image, lambda m: m.photo)
+@dp.message(AddProduct.image, F.photo)
 async def process_image(message: types.Message, state: FSMContext):
     data = await state.get_data()
+    
+    await message.answer("⏳ Загружаю товар на сайт, подожди секунду...")
     
     photo = message.photo[-1]
     file_info = await bot.get_file(photo.file_id)
