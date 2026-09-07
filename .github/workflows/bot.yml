@@ -2,8 +2,6 @@ name: Run Telegram Bot
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '*/5 * * * *' # Проверка каждые 5 минут
 
 jobs:
   run-bot:
@@ -26,5 +24,4 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         run: |
-          python bot.py &
-          sleep 240 # Даем боту поработать 4 минуты перед перезапуском цикла
+          python bot.py
