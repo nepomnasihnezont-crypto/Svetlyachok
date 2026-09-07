@@ -150,13 +150,14 @@ async def process_image(message: types.Message, state: FSMContext):
         products = []
 
     # 3. Формируем новый товар с правильным регистром
-    new_product = {
+   new_product = {
         "title": data["title"],
         "price": data["price"],
         "gender": data["gender"].strip().lower(),
         "type": data["type"].strip().lower(),
         "description": data["description"],
-        "image": image_filename
+        "image": image_filename,
+        "images": []
     }
     products.append(new_product)
 
