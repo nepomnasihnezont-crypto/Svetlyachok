@@ -145,8 +145,8 @@ async def process_image(message: types.Message, state: FSMContext):
     new_product = {
         "title": data["title"],
         "price": data["price"],
-        "gender": data["gender"],
-        "type": data["type"],
+        "gender": data["gender"].strip().lower(),
+        "type": data["type"].strip().lower(),
         "description": data["description"],
         "image": image_filename
     }
