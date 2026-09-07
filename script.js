@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
+[source: 2]document.addEventListener('DOMContentLoaded', async () => {
     const starsCount = 45; 
     for (let i = 0; i < starsCount; i++) {
         const star = document.createElement('div');
@@ -89,7 +89,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
-                const response = await fetch('/Svetlyachok/content/products/products.json');
+                // Универсальный путь к JSON (работает и на корневом домене, и в подпапке репозитория)
+                let response = await fetch('content/products/products.json');
+                if (!response.ok) {
+                    response = await fetch('/Svetlyachok/content/products/products.json');
+                }
                 if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
