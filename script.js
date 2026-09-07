@@ -1,4 +1,4 @@
-[source: 2]document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const starsCount = 45; 
     for (let i = 0; i < starsCount; i++) {
         const star = document.createElement('div');
@@ -89,10 +89,10 @@
             targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
-                // Универсальный путь к JSON (работает и на корневом домене, и в подпапке репозитория)
-                let response = await fetch('content/products/products.json');
+                // Надежная загрузка JSON с приоритетом под GitHub Pages пути /Svetlyachok/
+                let response = await fetch('/Svetlyachok/content/products/products.json');
                 if (!response.ok) {
-                    response = await fetch('/Svetlyachok/content/products/products.json');
+                    response = await fetch('content/products/products.json');
                 }
                 if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
@@ -259,7 +259,6 @@
                     </div>
                     <button class="remove-item-btn" data-index="${index}">Удалить</button>
                 `;
-                
                 cartItemsContainer.appendChild(div);
             });
 
