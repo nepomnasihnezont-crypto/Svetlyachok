@@ -89,18 +89,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
-                // Перебираем возможные варианты путей для стабильной загрузки products.json
-                let response = await fetch('/content/products/products.json').catch(() => null);
+                // Прямой запрос products.json от корня сайта
+                const response = await fetch('/content/products/products.json');
                 
-                if (!response || !response.ok) {
-                    response = await fetch('content/products/products.json').catch(() => null);
-                }
-                
-                if (!response || !response.ok) {
-                    response = await fetch('/Svetlyachok/content/products/products.json').catch(() => null);
-                }
-
-                if (!response || !response.ok) {
+                if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
                 }
