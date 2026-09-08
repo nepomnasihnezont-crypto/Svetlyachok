@@ -904,5 +904,14 @@
         "description": "мяу",
         "image": "images/uploads/AQADgh1rGyOqAAFJfA.jpg",
         "images": []
+    },
+    {
+        "title": "Футболка",
+        "price": 15000,
+        "gender": "мальчики",
+        "type": "футболки",
+        "description": "мяяяуу",
+        "image": "images/uploads/AQADgh1rGyOqAAFJfA.jpg",
+        "images": []
     }
 ]
