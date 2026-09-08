@@ -89,12 +89,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
-                // Надежная загрузка JSON с приоритетом под GitHub Pages пути /Svetlyachok/
-                let response = await fetch('/Svetlyachok/content/products/products.json');
-                if (!response.ok) {
-                    response = await fetch('content/products/products.json');
+                // Перебираем возможные варианты путей для стабильной загрузки products.json
+                let response = await fetch('/content/products/products.json').catch(() => null);
+                
+                if (!response || !response.ok) {
+                    response = await fetch('content/products/products.json').catch(() => null);
                 }
-                if (!response.ok) {
+                
+                if (!response || !response.ok) {
+                    response = await fetch('/Svetlyachok/content/products/products.json').catch(() => null);
+                }
+
+                if (!response || !response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
                 }
