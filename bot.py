@@ -123,8 +123,7 @@ async def process_image(message: types.Message, state: FSMContext):
     
     photo = message.photo[-1]
     file_info = await bot.get_file(photo.file_id)
-    file_path = file_info.file_path
-    image_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_path}"
+    image_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_info.file_path}"
     
     image_bytes = requests.get(image_url).content
     image_filename = f"images/uploads/{photo.file_unique_id}.jpg"
@@ -132,15 +131,18 @@ async def process_image(message: types.Message, state: FSMContext):
     g = Github(GITHUB_TOKEN)
     repo = g.get_repo(REPO_NAME)
 
-    # 1. Загружаем картинку в репозиторий
-    repo.create_file(
-        path=image_filename,
-        message="Add product image via bot",
-        content=image_bytes,
-        branch="main"
-    )
+    # Безопасная загрузка картинки в репозиторий
+    try:
+        repo.create_file(
+            path=image_filename,
+            message=f"Add image {photo.file_unique_id}",
+            content=image_bytes,
+            branch="main"
+        )
+    except Exception as e:
+        print(f"Ошибка загрузки картинки: {e}")
 
-    # 2. Получаем актуальный products.json
+    # Получаем актуальный products.json
     contents = repo.get_contents("content/products/products.json", ref="main")
     try:
         products = json.loads(contents.decoded_content.decode("utf-8"))
@@ -149,7 +151,6 @@ async def process_image(message: types.Message, state: FSMContext):
     except Exception:
         products = []
 
-    # 3. Формируем новый товар с точным соответствием структуры и полем "images"
     new_product = {
         "title": data["title"],
         "price": data["price"],
@@ -161,7 +162,6 @@ async def process_image(message: types.Message, state: FSMContext):
     }
     products.append(new_product)
 
-    # 4. Обновляем JSON файл в репозитории
     repo.update_file(
         path="content/products/products.json",
         message=f"Add new product: {data['title']}",
