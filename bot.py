@@ -151,15 +151,17 @@ async def process_image(message: types.Message, state: FSMContext):
     except Exception:
         products = []
 
+    # Формируем новый товар в точном соответствии с форматом вашего списка (массивы в полях gender и type)
     new_product = {
         "title": data["title"],
         "price": data["price"],
-        "gender": data["gender"].strip().lower(),
-        "type": data["type"].strip().lower(),
+        "gender": [data["gender"].strip().lower()],
+        "type": [data["type"].strip().lower()],
         "description": data["description"],
         "image": image_filename,
         "images": []
     }
+    
     products.append(new_product)
 
     repo.update_file(
