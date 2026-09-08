@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import requests
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.fsm.context import FSMContext
@@ -142,6 +143,10 @@ async def process_image(message: types.Message, state: FSMContext):
     except Exception as e:
         print(f"Ошибка загрузки картинки: {e}")
 
+    # Небольшая пауза, чтобы GitHub успел зафиксировать картинку 
+    # и не отменял следующие автоматические сборки (Actions)
+    time.sleep(3)
+
     # Получаем актуальный products.json
     contents = repo.get_contents("content/products/products.json", ref="main")
     try:
@@ -151,7 +156,7 @@ async def process_image(message: types.Message, state: FSMContext):
     except Exception:
         products = []
 
-    # Формируем новый товар в точном соответствии с форматом вашего списка (массивы в полях gender и type)
+    # Формируем новый товар с массивами в gender и type
     new_product = {
         "title": data["title"],
         "price": data["price"],
