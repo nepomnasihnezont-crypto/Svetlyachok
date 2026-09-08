@@ -89,9 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             targetType = targetType ? decodeURIComponent(targetType).toLowerCase() : '';
 
             try {
-                // Прямой запрос products.json от корня сайта
-                const response = await fetch('/content/products/products.json');
-                
+                const response = await fetch('/Svetlyachok/content/products/products.json');
                 if (!response.ok) {
                     gallery.innerHTML = '<p style="text-align:center; width: 100%;">В этом разделе пока нет товаров.</p>';
                     return;
@@ -99,11 +97,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const products = await response.json();
 
+                // Универсальная фильтрация для строк и массивов
                 const filtered = products.filter(item => {
                     if (!item) return false;
-                    const itemGender = (item.gender && typeof item.gender === 'string') ? item.gender.toLowerCase() : '';
-                    const itemType = (item.type && typeof item.type === 'string') ? item.type.toLowerCase() : '';
-                    return itemGender === targetPerson && itemType === targetType;
+                    
+                    let itemGenders = Array.isArray(item.gender) ? item.gender : [item.gender];
+                    let itemTypes = Array.isArray(item.type) ? item.type : [item.type];
+                    
+                    const matchesGender = itemGenders.some(g => g && String(g).toLowerCase() === targetPerson);
+                    const matchesType = itemTypes.some(t => t && String(t).toLowerCase() === targetType);
+                    
+                    return matchesGender && matchesType;
                 });
 
                 if (filtered.length === 0) {
